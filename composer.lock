@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0f10d13932ae6603435458e2e6d64d34",
+    "packages": [
+        {
+            "name": "wpmoo/wpmoo",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../../../../wpmoo-org/wpmoo",
+                "reference": "37f07e17272709ae5ed4dcf7837472c7bd1150b3"
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "bin": [
+                "bin/moo"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPMoo\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "WPMoo — WordPress Micro Object-Oriented Framework (PHP 7.4+)",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "wpmoo/wpmoo": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

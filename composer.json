@@ -1,0 +1,28 @@
+{
+  "name": "wpmoo/wpmoo-starter",
+  "description": "Starter plugin demonstrating WPMoo Framework usage.",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.4",
+    "wpmoo/wpmoo": "dev-main"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../../../wpmoo-org/wpmoo",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WPMooStarter\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "moo": "php vendor/bin/moo"
+  }
+}
