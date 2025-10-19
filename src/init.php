@@ -4,55 +4,22 @@
  *
  * @package WPMooStarter
  * @since 0.1.0
- * @version 0.1.0
+ * @version 0.2.0
  */
 
 use WPMoo\Database\Query;
 use WPMoo\Metabox\Metabox;
 use WPMoo\Options\Options;
 use WPMooStarter\Models\Book;
+use WPMooStarter\Pages\Settings;
+use WPMooStarter\PostTypes\Event;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'is_admin' ) || is_admin() ) {
-	Options::register(
-		array(
-			'page_title' => 'Starter Settings',
-			'menu_title' => 'WPMoo Starter',
-			'menu_slug'  => 'wpmoo-starter-settings',
-			'option_key' => 'wpmoo_starter_settings',
-			'sections'   => array(
-				array(
-					'title'  => 'General',
-					'fields' => array(
-						array(
-							'id'          => 'welcome_text',
-							'type'        => 'text',
-							'label'       => 'Welcome Text',
-							'description' => 'Message displayed in the starter log.',
-							'default'     => 'Hello from WPMoo Starter Options!',
-							'args'        => array(
-								'class'       => 'regular-text',
-								'placeholder' => 'Enter welcome message',
-							),
-						),
-						array(
-							'id'          => 'enable_books',
-							'type'        => 'checkbox',
-							'label'       => 'Enable Book Creation',
-							'description' => 'Toggle the starter book insertion on init.',
-							'default'     => 1,
-						),
-						array(
-							'id'          => 'accent_color',
-							'type'        => 'color',
-							'label'       => 'Accent Color',
-							'description' => 'Example field demonstrating the color picker.',
-							'default'     => '#8a00d4',
-						),
-					),
-				),
-			),
-		)
-	);
+	Settings::register();
 
 	Metabox::register(
 		array(
@@ -90,6 +57,8 @@ if ( ! function_exists( 'is_admin' ) || is_admin() ) {
 		)
 	);
 }
+
+Event::register();
 
 // Run after WPMoo init.
 add_action(
