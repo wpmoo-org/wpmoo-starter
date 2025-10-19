@@ -28,11 +28,13 @@ class Event {
 			->singular( 'Event' )
 			->plural( 'Events' )
 			->description( 'Manage upcoming events published by the starter plugin.' )
+			->slug( 'events' )
 			->public()
 			->showInRest()
 			->supports( array( 'title', 'editor', 'thumbnail', 'excerpt' ) )
 			->menuIcon( 'dashicons-calendar-alt' )
-			->arg( 'rewrite', array( 'slug' => 'events' ) )
+			->taxonomy( 'genre' )
+			->hasArchive()
 			->register();
 	}
 }

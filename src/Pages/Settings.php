@@ -32,8 +32,10 @@ class Settings {
 				'option_key' => 'wpmoo_starter_settings',
 				'sections'   => array(
 					array(
-						'title'  => 'General',
-						'fields' => array(
+						'id'          => 'general',
+						'title'       => 'General Settings',
+						'description' => 'Configure basic plugin options',
+						'fields'      => array(
 							array(
 								'id'          => 'welcome_text',
 								'type'        => 'text',
@@ -58,6 +60,34 @@ class Settings {
 								'label'       => 'Accent Color',
 								'description' => 'Example field demonstrating the color picker.',
 								'default'     => '#8a00d4',
+							),
+						),
+					),
+					array(
+						'id'          => 'integrations',
+						'title'       => 'Integrations',
+						'description' => 'Third-party service integrations',
+						'fields'      => array(
+							array(
+								'id'          => 'api_key',
+								'type'        => 'text',
+								'label'       => 'API Key',
+								'description' => 'Enter your API key for external services',
+								'default'     => '',
+							),
+						),
+					),
+					array(
+						'id'          => 'advanced',
+						'title'       => 'Advanced',
+						'description' => 'Advanced configuration options',
+						'fields'      => array(
+							array(
+								'id'          => 'custom_css',
+								'type'        => 'textarea',
+								'label'       => 'Custom CSS',
+								'description' => 'Add custom CSS code',
+								'default'     => '',
 							),
 						),
 					),
