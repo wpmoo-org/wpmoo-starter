@@ -10,6 +10,7 @@
 use WPMoo\Database\Query;
 use WPMoo\Metabox\Metabox;
 use WPMoo\Options\Options;
+use WPMooStarter\Admin\FakeDataPage;
 use WPMooStarter\Models\Book;
 use WPMooStarter\Pages\Settings;
 use WPMooStarter\PostTypes\Event;
@@ -21,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! function_exists( 'is_admin' ) || is_admin() ) {
 	Settings::register();
+	FakeDataPage::init();
 
 	Metabox::register(
 		array(
