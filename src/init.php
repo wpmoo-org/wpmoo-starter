@@ -13,6 +13,7 @@ use WPMoo\Options\Options;
 use WPMooStarter\Models\Book;
 use WPMooStarter\Pages\Settings;
 use WPMooStarter\PostTypes\Event;
+use WPMooStarter\Taxonomies\Genre;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -59,6 +60,7 @@ if ( ! function_exists( 'is_admin' ) || is_admin() ) {
 }
 
 Event::register();
+Genre::register();
 
 // Run after WPMoo init.
 add_action(
