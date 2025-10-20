@@ -1,5 +1,10 @@
-# Ignore vendor directory
+# Ignore vendor directory & generated CLI
 vendor/
+moo
+
+# Ignore generated language templates during development
+languages/
+
 
 # Ignore lock files
 yarn.lock

@@ -23,6 +23,15 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "moo": "php vendor/bin/moo"
+    "moo": "php vendor/bin/moo",
+    "sync-moo": [
+      "@php -r \"if (!file_exists('vendor/wpmoo-org/wpmoo/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo-org/wpmoo/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
+    ],
+    "post-install-cmd": [
+      "@sync-moo"
+    ],
+    "post-update-cmd": [
+      "@sync-moo"
+    ]
   }
 }
