@@ -24,41 +24,41 @@ if ( ! function_exists( 'is_admin' ) || is_admin() ) {
 	Settings::register();
 	FakeDataPage::init();
 
-	Metabox::register(
-		array(
-			'id'       => 'wpmoo_starter_metabox',
-			'title'    => 'Starter Details',
-			'screens'  => array( 'post' ),
-			'context'  => 'side',
-			'priority' => 'default',
-			'fields'   => array(
-				array(
-					'id'          => 'wpmoo_starter_subtitle',
-					'type'        => 'text',
-					'label'       => 'Subtitle',
-					'description' => 'Optional short subtitle for the post.',
-					'default'     => '',
-				),
-				array(
-					'id'          => 'wpmoo_starter_notes',
-					'type'        => 'textarea',
-					'label'       => 'Internal Notes',
-					'description' => 'Private notes stored as post meta.',
-					'default'     => '',
-					'args'        => array(
-						'rows' => 4,
-					),
-				),
-				array(
-					'id'          => 'wpmoo_starter_featured',
-					'type'        => 'checkbox',
-					'label'       => 'Mark as Featured',
-					'description' => 'Example checkbox stored with the post.',
-					'default'     => 0,
-				),
-			),
-		)
-	);
+	$event_metabox = Metabox::register( 'wpmoo_starter_metabox' )
+		->title( 'Starter Details' )
+		->postType( array( 'post' ) )
+		->context( 'normal' )
+		->panel();
+
+	$schedule = $event_metabox->section( 'schedule', 'Schedule' )->icon( 'dashicons-clock' );
+	$schedule
+		->field( 'wpmoo_starter_all_day', 'checkbox' )
+		->label( 'All Day Event' )
+		->description( 'Toggle to mark the entry as an all-day item.' )
+		->default( 0 );
+
+	$details = $event_metabox->section( 'details', 'Details' )->icon( 'dashicons-admin-post' );
+	$details
+		->field( 'wpmoo_starter_subtitle', 'text' )
+		->label( 'Subtitle' )
+		->description( 'Optional short subtitle for the post.' )
+		->default( '' )
+		->placeholder( 'Enter subtitle' );
+	$details
+		->field( 'wpmoo_starter_notes', 'textarea' )
+		->label( 'Internal Notes' )
+		->description( 'Private notes stored as post meta.' )
+		->default( '' )
+		->args( array( 'rows' => 4 ) );
+
+	$meta = $event_metabox->section( 'meta', 'Meta' )->icon( 'dashicons-star-filled' );
+	$meta
+		->field( 'wpmoo_starter_featured', 'checkbox' )
+		->label( 'Mark as Featured' )
+		->description( 'Quick flag stored alongside the post.' )
+		->default( 0 );
+
+	$event_metabox->register();
 }
 
 Event::register();

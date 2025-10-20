@@ -35,6 +35,7 @@ class Settings {
 						'id'          => 'general',
 						'title'       => 'General Settings',
 						'description' => 'Configure basic plugin options',
+						'icon'        => 'dashicons-admin-generic',
 						'fields'      => array(
 							array(
 								'id'          => 'welcome_text',
@@ -67,6 +68,7 @@ class Settings {
 						'id'          => 'integrations',
 						'title'       => 'Integrations',
 						'description' => 'Third-party service integrations',
+						'icon'        => 'dashicons-admin-links',
 						'fields'      => array(
 							array(
 								'id'          => 'api_key',
@@ -81,6 +83,7 @@ class Settings {
 						'id'          => 'advanced',
 						'title'       => 'Advanced',
 						'description' => 'Advanced configuration options',
+						'icon'        => 'dashicons-admin-tools',
 						'fields'      => array(
 							array(
 								'id'          => 'custom_css',
