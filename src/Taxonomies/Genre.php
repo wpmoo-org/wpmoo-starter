@@ -24,7 +24,7 @@ class Genre {
 	 * @return void
 	 */
 	public static function register(): void {
-		$taxonomy = Taxonomy::register( 'genre' )
+		$taxonomy = Taxonomy::create( 'genre' )
 			->singular( 'Genre' )
 			->plural( 'Genres' )
 			->description( 'Group events by genre or category.' )

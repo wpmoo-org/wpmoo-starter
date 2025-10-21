@@ -26,7 +26,7 @@ class Color {
 	public static function register( Builder $container ): void {
 		$section = $container->section(
 			'color_examples',
-			'Input: Color Picker',
+			'Color Picker',
 			'Example configurations for the WordPress color picker.'
 		)->icon( 'dashicons-art' );
 

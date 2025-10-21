@@ -26,7 +26,7 @@ class Textarea {
 	public static function register( Builder $container ): void {
 		$section = $container->section(
 			'textarea_examples',
-			'Input: Textarea',
+			'Textarea',
 			'Examples covering multi-line inputs and formatting helpers.'
 		)->icon( 'dashicons-editor-paragraph' );
 

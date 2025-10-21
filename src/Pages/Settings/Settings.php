@@ -27,7 +27,7 @@ class Settings {
 	 * @return void
 	 */
 	public static function register(): void {
-		$container = Options::register( 'wpmoo_starter_settings' )
+		$container = Options::create( 'wpmoo_starter_settings' )
 			->pageTitle( 'Starter Settings' )
 			->menuTitle( 'WPMoo Starter' )
 			->menuSlug( 'wpmoo-starter-settings' )

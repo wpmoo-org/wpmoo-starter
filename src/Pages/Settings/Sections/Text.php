@@ -26,7 +26,7 @@ class Text {
 	public static function register( Builder $container ): void {
 		$section = $container->section(
 			'text_examples',
-			'Input: Text',
+			'Text',
 			'Examples showing how to configure single line inputs.'
 		)->icon( 'dashicons-editor-textcolor' );
 

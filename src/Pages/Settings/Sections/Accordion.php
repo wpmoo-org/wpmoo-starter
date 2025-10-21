@@ -26,7 +26,7 @@ class Accordion {
 	public static function register( Builder $container ): void {
 		$section = $container->section(
 			'accordion_examples',
-			'Group: Accordion',
+			'Accordion',
 			'Organise fields into collapsible groups with nested field definitions.'
 		)->icon( 'dashicons-menu' );
 

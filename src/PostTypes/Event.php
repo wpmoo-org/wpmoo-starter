@@ -24,7 +24,7 @@ class Event {
 	 * @return void
 	 */
 	public static function register(): void {
-		$event = PostType::register( 'event' )
+		$event = PostType::create( 'event' )
 			->singular( 'Event' )
 			->plural( 'Events' )
 			->description( 'Manage upcoming events published by the starter plugin.' )
