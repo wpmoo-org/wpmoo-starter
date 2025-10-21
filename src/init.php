@@ -8,11 +8,10 @@
  */
 
 use WPMoo\Database\Query;
-use WPMoo\Metabox\Metabox;
 use WPMoo\Options\Options;
 use WPMooStarter\Admin\FakeDataPage;
 use WPMooStarter\Models\Book;
-use WPMooStarter\Pages\Settings;
+use WPMooStarter\Pages\Settings\Settings as SettingsPage;
 use WPMooStarter\PostTypes\Event;
 use WPMooStarter\Taxonomies\Genre;
 
@@ -21,66 +20,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'is_admin' ) || is_admin() ) {
-	Settings::register();
+	SettingsPage::register();
 	FakeDataPage::init();
-
-	$event_metabox = Metabox::register( 'wpmoo_starter_metabox' )
-		->title( 'Starter Details' )
-		->postType( array( 'post' ) )
-		->context( 'normal' )
-		->panel();
-
-	$schedule = $event_metabox->section( 'schedule', 'Schedule' )->icon( 'dashicons-clock' );
-	$schedule
-		->field( 'wpmoo_starter_all_day', 'checkbox' )
-		->label( 'All Day Event' )
-		->description( 'Toggle to mark the entry as an all-day item.' )
-		->default( 0 );
-
-	$details = $event_metabox->section( 'details', 'Details' )->icon( 'dashicons-admin-post' );
-	$details
-		->field( 'wpmoo_starter_subtitle', 'text' )
-		->label( 'Subtitle' )
-		->description( 'Optional short subtitle for the post.' )
-		->default( '' )
-		->placeholder( 'Enter subtitle' );
-	$details
-		->field( 'wpmoo_starter_notes', 'textarea' )
-		->label( 'Internal Notes' )
-		->description( 'Private notes stored as post meta.' )
-		->default( '' )
-		->args( array( 'rows' => 4 ) );
-
-	$meta = $event_metabox->section( 'meta', 'Meta' )->icon( 'dashicons-star-filled' );
-	$meta
-		->field( 'wpmoo_starter_featured', 'checkbox' )
-		->label( 'Mark as Featured' )
-		->description( 'Quick flag stored alongside the post.' )
-		->default( 0 );
-
-	$event_metabox->register();
+	Event::register();
+	Genre::register();
 }
 
-Event::register();
-Genre::register();
+
 
 // Run after WPMoo init.
 add_action(
 	'wpmoo_init',
 	function () {
-		$welcome = Options::value( 'wpmoo_starter_settings', 'welcome_text', 'Hello from WPMoo Starter Options!' );
-		error_log( '🐮 WPMoo Starter Plugin initialized: ' . $welcome ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Sample output for demonstration purposes.
-
-		// Example query usage.
-		$posts = Query::table( 'wp_posts' )->where( 'post_status', 'publish' )->limit( 3 )->get();
-
-		foreach ( $posts as $post ) {
-			error_log( 'Post: ' . $post->post_title ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Sample output for demonstration purposes.
-		}
-
-		$books_enabled = (bool) Options::value( 'wpmoo_starter_settings', 'enable_books', 1 );
-
-		// Example model usage.
+		$books_enabled = (bool) Options::value(
+			'wpmoo_starter_settings',
+			'books_toggle',
+			Options::value( 'wpmoo_starter_settings', 'enable_books', 1 )
+		);
 		if ( $books_enabled ) {
 			$book = new Book(
 				array(
@@ -90,26 +46,14 @@ add_action(
 			);
 			$book->save();
 		}
-	}
-);
 
-add_action(
-	'wpmoo_activate',
-	function () {
-		global $wpdb;
+		$query = Query::table( 'wp_posts' )
+			->where( 'post_status', 'publish' )
+			->limit( 3 )
+			->get();
 
-		$table   = $wpdb->prefix . 'wpmoo_books';
-		$charset = $wpdb->get_charset_collate();
-
-		$sql = "CREATE TABLE IF NOT EXISTS `$table` (
-			`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-			`title` varchar(255) NOT NULL,
-			`author` varchar(255) NOT NULL,
-			`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-			PRIMARY KEY (`id`)
-		) $charset;";
-
-		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-		dbDelta( $sql );
+		foreach ( $query as $post ) {
+			error_log( 'Post: ' . $post->post_title ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+		}
 	}
 );
