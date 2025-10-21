@@ -36,7 +36,5 @@ class Settings {
 		Textarea::register( $container );
 		Color::register( $container );
 		Accordion::register( $container );
-
-		$container->register();
 	}
 }
