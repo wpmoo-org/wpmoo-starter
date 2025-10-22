@@ -29,43 +29,37 @@ class Text {
 			->description( 'Examples showing how to configure single line inputs.' )
 			->icon( 'dashicons-editor-textcolor' )
 			->fields(
-				Field::fieldset( 'text_basic_form', 'Basic Details' )
-					->description( 'Example grouping for frequently used account fields.' )
-					->width( 50 )
-					->fields(
-						Field::text( 'welcome_text', 'Basic Text' )
-							->description( 'A simple text input using a placeholder and default value.' )
-							->placeholder( 'Enter plain text' )
-							->default( 'Welcome to WPMoo' ),
+				Field::text( 'welcome_text', 'Basic Text' )
+					->description( 'A simple text input using a placeholder and default value.' )
+					->before( '<p class="description">Shown on the welcome banner across the site.</p>' )
+					->placeholder( 'Enter plain text' )
+					->default( 'Welcome to WPMoo' )
+					->help( 'Keep short and punchy so the tooltip stays legible.' ),
 
-						Field::text( 'text_email', 'Email Address' )
-							->description( 'Custom input type set to email with autocomplete helpers.' )
-							->attributes(['type' => 'email', 'autocomplete' => 'email', 'inputmode' => 'email'])
-							->help( 'Validated by the browser because the input type is set to email.' )
-							->placeholder( 'name@example.com' )
-					),
+				Field::text( 'text_email', 'Email Address' )
+					->description( 'Custom input type set to email with autocomplete helpers.' )
+					->before( '<p class="description">We notify this address about account activity.</p>' )
+					->attributes(['type' => 'email', 'autocomplete' => 'email', 'inputmode' => 'email'])
+					->help( 'Browser validation enforces the email format automatically.' )
+					->placeholder( 'name@example.com' ),
 
-				Field::fieldset( 'text_advanced_form', 'Advanced Inputs' )
-					->description( 'Demonstrates prefix/suffix helpers and password styles.' )
-					->width( 50 )
-					->fields(
-						Field::text( 'text_with_prefix', 'URL Slug' )
-							->description( 'Demonstrates before/after markup around the control.' )
-							->before( '<code>https://example.com/</code>' )
-							->after( '<span class="description">Only lowercase letters and dashes.</span>' )
-							->attributes(['pattern' => '[a-z0-9-]+', 'inputmode' => 'latin', 'maxlength' => 32, 'autocomplete' => 'off'])
-							->default( 'starter-page' ),
+				Field::text( 'text_with_prefix', 'URL Slug' )
+					->description( 'Demonstrates before/after markup around the control.' )
+					->before( '<p class="description"><strong>Base URL:</strong> https://example.com/</p>' )
+					->after( '<p class="description">Only lowercase letters and dashes.</p>' )
+					->attributes(['pattern' => '[a-z0-9-]+', 'inputmode' => 'latin', 'maxlength' => 32, 'autocomplete' => 'off'])
+					->default( 'starter-page' ),
 
-						Field::text( 'text_password', 'API Token' )
-							->description( 'Use password input type to hide sensitive data.' )
-							->attributes(['type' => 'password', 'autocomplete' => 'new-password', 'placeholder' => '••••••••••'])
-							->help( 'Stored as plain text, so treat it as display-only inside the UI.' )
-					),
+				Field::text( 'text_password', 'API Token' )
+					->description( 'Use password input type to hide sensitive data.' )
+					->attributes(['type' => 'password', 'autocomplete' => 'new-password', 'placeholder' => '••••••••••'])
+					->help( 'Copy the token to a secure place before saving changes.' ),
 
 				Field::checkbox( 'books_toggle', 'Insert Sample Books' )
 					->description( 'Controls whether the starter plugin seeds demo book entries on init.' )
 					->default( 1 )
-					->help( 'Disable after you are done experimenting with the sample data.' )
+					->before( '<p class="description">Adds demo items to the Books custom post type.</p>' )
+					->help( 'Turn this off once you no longer need the sample content.' )
 			);
 	}
 }

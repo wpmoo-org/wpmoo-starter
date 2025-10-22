@@ -52,17 +52,22 @@ class Accordion {
 			'fields' => array(
 				Field::text( 'hero_title', 'Headline' )
 					->default( 'Welcome to WPMoo Starter' )
-					->placeholder( 'Enter a strong headline' ),
+					->placeholder( 'Enter a strong headline' )
+					->help( 'Keep the headline under 60 characters for optimal layout.' ),
 				Field::textarea( 'hero_subtitle', 'Subtitle' )
 					->description( 'Shown below the headline.' )
-					->attributes( array( 'rows' => 3 ) ),
+					->before( '<p class="description">Explain the product value in one or two sentences.</p>' )
+					->attributes( array( 'rows' => 3 ) )
+					->help( 'Supports HTML formatting for emphasis if needed.' ),
 				Field::text( 'hero_primary_label', 'Primary Button Label' )
 					->default( 'Get Started' )
 					->help( 'Leave empty to hide the button.' ),
 				Field::text( 'hero_primary_url', 'Primary Button URL' )
-					->attributes( array( 'type' => 'url' ) ),
+					->attributes( array( 'type' => 'url' ) )
+					->help( 'Button links open in the same tab by default.' ),
 				Field::checkbox( 'hero_enabled', 'Display Hero Section' )
-					->default( 1 ),
+					->default( 1 )
+					->help( 'Disable if your theme provides its own hero section.' ),
 			),
 		);
 	}
@@ -78,11 +83,13 @@ class Accordion {
 			'title'  => 'Feature Strip',
 			'fields' => array(
 				Field::text( 'features_heading', 'Heading' )
-					->default( 'Why customers love us' ),
+					->default( 'Why customers love us' )
+					->help( 'Appears above the feature list on the homepage.' ),
 				Field::textarea( 'features_copy', 'Supporting Copy' )
 					->attributes( array( 'rows' => 3 ) ),
 				Field::color( 'features_background', 'Background Colour' )
-					->default( '#f3f4f6' ),
+					->default( '#f3f4f6' )
+					->help( 'Choose a subtle neutral shade for readability.' ),
 			),
 		);
 	}
@@ -98,11 +105,14 @@ class Accordion {
 			'title'  => 'FAQ',
 			'fields' => array(
 				Field::text( 'faq_title', 'Section Title' )
-					->default( 'Frequently Asked Questions' ),
+					->default( 'Frequently Asked Questions' )
+					->help( 'Keep the title short so it fits on mobile.' ),
 				Field::textarea( 'faq_intro', 'Intro Copy' )
 					->description( 'Shown above the accordion of questions.' )
-					->attributes( array( 'rows' => 2 ) ),
-				Field::checkbox( 'faq_show_search', 'Display Search Box' ),
+					->attributes( array( 'rows' => 2 ) )
+					->help( 'Supports line breaks for longer context.' ),
+				Field::checkbox( 'faq_show_search', 'Display Search Box' )
+					->help( 'Adds a keyword filter to the FAQ list.' ),
 			),
 		);
 	}
