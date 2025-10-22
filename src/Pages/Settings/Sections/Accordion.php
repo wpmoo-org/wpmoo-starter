@@ -7,7 +7,7 @@
 
 namespace WPMooStarter\Pages\Settings\Sections;
 
-use WPMoo\Options\Container;
+use WPMoo\Moo;
 use WPMoo\Options\Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,25 +21,24 @@ class Accordion {
 	/**
 	 * Register the accordion example section.
 	 *
-	 * @param Container $container Fluent container instance.
+	 * Register the accordion example section.
+	 *
 	 * @return void
 	 */
-	public static function register( Container $container ): void {
-		$section = $container->section(
-			'accordion_examples',
-			'Accordion',
-			'Organise fields into collapsible groups with nested field definitions.'
-		)->icon( 'dashicons-menu' );
-
-		$section->add_field(
-			Field::accordion( 'content_blocks', 'Homepage Blocks' )
-				->description( 'Each accordion panel renders its own collection of fields.' )
-				->set( 'sections', array(
-					self::hero_panel(),
-					self::feature_panel(),
-					self::faq_panel(),
-				) )
-		);
+	public static function register(): void {
+		Moo::make( 'section', 'accordion_examples', 'Accordion Examples' )
+			->parent( 'wpmoo_starter_settings' )
+			->description( 'Organise fields into collapsible groups with nested field definitions.' )
+			->icon( 'dashicons-menu' )
+			->fields(
+				Field::accordion( 'content_blocks', 'Homepage Blocks' )
+					->description( 'Each accordion panel renders its own collection of fields.' )
+					->set( 'sections', array(
+						self::hero_panel(),
+						self::feature_panel(),
+						self::faq_panel(),
+					) )
+			);
 	}
 
 	/**
@@ -58,7 +57,7 @@ class Accordion {
 					->placeholder( 'Enter a strong headline' ),
 				Field::textarea( 'hero_subtitle', 'Subtitle' )
 					->description( 'Shown below the headline.' )
-					->args( array( 'rows' => 3 ) ),
+					->attributes( array( 'rows' => 3 ) ),
 				Field::text( 'hero_primary_label', 'Primary Button Label' )
 					->default( 'Get Started' )
 					->help( 'Leave empty to hide the button.' ),
@@ -83,7 +82,7 @@ class Accordion {
 				Field::text( 'features_heading', 'Heading' )
 					->default( 'Why customers love us' ),
 				Field::textarea( 'features_copy', 'Supporting Copy' )
-					->args( array( 'rows' => 3 ) ),
+					->attributes( array( 'rows' => 3 ) ),
 				Field::color( 'features_background', 'Background Colour' )
 					->default( '#f3f4f6' ),
 			),
@@ -104,7 +103,7 @@ class Accordion {
 					->default( 'Frequently Asked Questions' ),
 				Field::textarea( 'faq_intro', 'Intro Copy' )
 					->description( 'Shown above the accordion of questions.' )
-					->args( array( 'rows' => 2 ) ),
+					->attributes( array( 'rows' => 2 ) ),
 				Field::checkbox( 'faq_show_search', 'Display Search Box' ),
 			),
 		);

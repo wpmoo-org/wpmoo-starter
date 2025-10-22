@@ -7,7 +7,7 @@
 
 namespace WPMooStarter\Pages\Settings;
 
-use WPMoo\Options\Container;
+use WPMoo\Moo;
 use WPMooStarter\Pages\Settings\Sections\Accordion;
 use WPMooStarter\Pages\Settings\Sections\Color;
 use WPMooStarter\Pages\Settings\Sections\Text;
@@ -27,14 +27,14 @@ class Settings {
 	 * @return void
 	 */
 	public static function register(): void {
-		$container = Container::create( 'options', 'wpmoo_starter_settings', 'Starter Settings' )
+		Moo::make( 'page', 'wpmoo_starter_settings', 'Starter Settings' )
 			->menuTitle( 'WPMoo Starter' )
 			->menuSlug( 'wpmoo-starter-settings' )
 			->capability( 'manage_options' );
 
-		Text::register( $container );
-		Textarea::register( $container );
-		Color::register( $container );
-		Accordion::register( $container );
+		Text::register();
+		Textarea::register();
+		Color::register();
+		Accordion::register();
 	}
 }

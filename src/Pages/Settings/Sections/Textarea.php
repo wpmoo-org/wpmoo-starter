@@ -7,7 +7,7 @@
 
 namespace WPMooStarter\Pages\Settings\Sections;
 
-use WPMoo\Options\Container;
+use WPMoo\Moo;
 use WPMoo\Options\Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,54 +19,32 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Textarea {
 	/**
-	 * Attach textarea examples to the container.
+	 * Attach textarea section via Moo facade.
 	 *
-	 * @param Container $container Fluent container instance.
 	 * @return void
 	 */
-	public static function register( Container $container ): void {
-		$section = $container->section(
-			'textarea_examples',
-			'Textarea',
-			'Examples covering multi-line inputs and formatting helpers.'
-		)->icon( 'dashicons-editor-paragraph' );
-
-		$section->add_fields(
-			array(
+	public static function register(): void {
+		Moo::make( 'section', 'textarea_examples', 'Textarea Examples' )
+			->parent( 'wpmoo_starter_settings' )
+			->description( 'Examples covering multi-line inputs and formatting helpers.' )
+			->icon( 'dashicons-editor-paragraph' )
+			->fields(
 				Field::textarea( 'textarea_basic', 'Basic Textarea' )
 					->description( 'Default textarea with placeholder and rows attribute.' )
 					->placeholder( 'Enter a short note…' )
-					->attributes(
-						array(
-							'rows' => 4,
-						)
-					)
-					->default( "Line one\nLine two" )
-					->size( 6 ),
+					->attributes(['rows' => 4])
+					->default( "Line one\nLine two" ),
 
 				Field::textarea( 'textarea_code', 'Code Snippet' )
 					->description( 'Apply monospace styling via custom attributes.' )
-					->attributes(
-						array(
-							'class'      => 'monospace',
-							'rows'       => 6,
-							'spellcheck' => 'false',
-						)
-					)
-					->help( 'Add a CSS rule for `.monospace` to apply your preferred font.' )
-					->size( 6 ),
+					->attributes(['class' => 'monospace', 'rows' => 6, 'spellcheck' => 'false'])
+					->help( 'Add a CSS rule for `.monospace` to apply your preferred font.' ),
 
 				Field::textarea( 'textarea_with_wrapper', 'Custom Wrapper' )
 					->description( 'Shows how before/after markup can frame the textarea.' )
 					->before( '<p class="description">Enter one item per line:</p>' )
 					->after( '<p class="description">These values will be parsed into an array.</p>' )
-					->attributes(
-						array(
-							'rows'      => 5,
-							'maxlength' => 500,
-						)
-					),
-			)
-		);
+					->attributes(['rows' => 5, 'maxlength' => 500])
+			);
 	}
 }
