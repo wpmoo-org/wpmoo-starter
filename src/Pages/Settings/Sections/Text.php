@@ -36,7 +36,8 @@ class Text {
 				Field::text( 'welcome_text', 'Basic Text' )
 					->description( 'A simple text input using a placeholder and default value.' )
 					->placeholder( 'Enter plain text' )
-					->default( 'Welcome to WPMoo' ),
+					->default( 'Welcome to WPMoo' )
+					->size( 6 ),
 
 				Field::text( 'text_email', 'Email Address' )
 					->description( 'Custom input type set to email with autocomplete helpers.' )
@@ -48,7 +49,8 @@ class Text {
 						)
 					)
 					->help( 'Validated by the browser because the input type is set to email.' )
-					->placeholder( 'name@example.com' ),
+					->placeholder( 'name@example.com' )
+					->size( 6 ),
 
 				Field::text( 'text_with_prefix', 'URL Slug' )
 					->description( 'Demonstrates before/after markup around the control.' )
@@ -62,7 +64,8 @@ class Text {
 							'autocomplete' => 'off',
 						)
 					)
-					->default( 'starter-page' ),
+					->default( 'starter-page' )
+					->size( 6 ),
 
 				Field::text( 'text_password', 'API Token' )
 					->description( 'Use password input type to hide sensitive data.' )
@@ -73,7 +76,8 @@ class Text {
 							'placeholder'  => '••••••••••',
 						)
 					)
-					->help( 'Stored as plain text, so treat it as display-only inside the UI.' ),
+					->help( 'Stored as plain text, so treat it as display-only inside the UI.' )
+					->size( 6 ),
 
 				Field::checkbox( 'books_toggle', 'Insert Sample Books' )
 					->description( 'Controls whether the starter plugin seeds demo book entries on init.' )

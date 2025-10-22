@@ -41,7 +41,8 @@ class Textarea {
 							'rows' => 4,
 						)
 					)
-					->default( "Line one\nLine two" ),
+					->default( "Line one\nLine two" )
+					->size( 6 ),
 
 				Field::textarea( 'textarea_code', 'Code Snippet' )
 					->description( 'Apply monospace styling via custom attributes.' )
@@ -52,7 +53,8 @@ class Textarea {
 							'spellcheck' => 'false',
 						)
 					)
-					->help( 'Add a CSS rule for `.monospace` to apply your preferred font.' ),
+					->help( 'Add a CSS rule for `.monospace` to apply your preferred font.' )
+					->size( 6 ),
 
 				Field::textarea( 'textarea_with_wrapper', 'Custom Wrapper' )
 					->description( 'Shows how before/after markup can frame the textarea.' )

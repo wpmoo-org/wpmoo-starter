@@ -39,7 +39,8 @@ class Color {
 			array(
 				Field::color( 'color_brand', 'Brand Color' )
 					->description( 'Default value defines your brand colour swatch.' )
-					->default( '#8a00d4' ),
+					->default( '#8a00d4' )
+					->size( 4 ),
 
 				Field::color( 'color_palette', 'Restricted Palette' )
 					->description( 'Pass a palette via data attributes to guide selection.' )
@@ -48,13 +49,15 @@ class Color {
 							'data-palette' => $palette,
 						)
 					)
-					->help( 'Palette values are encoded into the input and parsed in JavaScript.' ),
+					->help( 'Palette values are encoded into the input and parsed in JavaScript.' )
+					->size( 4 ),
 
 				Field::color( 'color_with_context', 'CTA Button Background' )
 					->description( 'Example using before/after hints for context.' )
 					->before( '<p class="description">Used for call-to-action buttons.</p>' )
 					->after( '<p class="description">Adjust text colour manually if needed for contrast.</p>' )
-					->default( '#2271b1' ),
+					->default( '#2271b1' )
+					->size( 4 ),
 			)
 		);
 	}
