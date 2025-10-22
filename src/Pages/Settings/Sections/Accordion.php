@@ -34,14 +34,11 @@ class Accordion {
 		$section->add_field(
 			Field::accordion( 'content_blocks', 'Homepage Blocks' )
 				->description( 'Each accordion panel renders its own collection of fields.' )
-				->set(
-					'sections',
-					array(
-						self::hero_panel(),
-						self::feature_panel(),
-						self::faq_panel(),
-					)
-				)
+				->set( 'sections', array(
+					self::hero_panel(),
+					self::feature_panel(),
+					self::faq_panel(),
+				) )
 		);
 	}
 
@@ -58,22 +55,17 @@ class Accordion {
 			'fields' => array(
 				Field::text( 'hero_title', 'Headline' )
 					->default( 'Welcome to WPMoo Starter' )
-					->placeholder( 'Enter a strong headline' )
-					->toArray(),
+					->placeholder( 'Enter a strong headline' ),
 				Field::textarea( 'hero_subtitle', 'Subtitle' )
 					->description( 'Shown below the headline.' )
-					->args( array( 'rows' => 3 ) )
-					->toArray(),
+					->args( array( 'rows' => 3 ) ),
 				Field::text( 'hero_primary_label', 'Primary Button Label' )
 					->default( 'Get Started' )
-					->help( 'Leave empty to hide the button.' )
-					->toArray(),
+					->help( 'Leave empty to hide the button.' ),
 				Field::text( 'hero_primary_url', 'Primary Button URL' )
-					->attributes( array( 'type' => 'url' ) )
-					->toArray(),
+					->attributes( array( 'type' => 'url' ) ),
 				Field::checkbox( 'hero_enabled', 'Display Hero Section' )
-					->default( 1 )
-					->toArray(),
+					->default( 1 ),
 			),
 		);
 	}
@@ -89,14 +81,11 @@ class Accordion {
 			'title'  => 'Feature Strip',
 			'fields' => array(
 				Field::text( 'features_heading', 'Heading' )
-					->default( 'Why customers love us' )
-					->toArray(),
+					->default( 'Why customers love us' ),
 				Field::textarea( 'features_copy', 'Supporting Copy' )
-					->args( array( 'rows' => 3 ) )
-					->toArray(),
+					->args( array( 'rows' => 3 ) ),
 				Field::color( 'features_background', 'Background Colour' )
-					->default( '#f3f4f6' )
-					->toArray(),
+					->default( '#f3f4f6' ),
 			),
 		);
 	}
@@ -112,14 +101,11 @@ class Accordion {
 			'title'  => 'FAQ',
 			'fields' => array(
 				Field::text( 'faq_title', 'Section Title' )
-					->default( 'Frequently Asked Questions' )
-					->toArray(),
+					->default( 'Frequently Asked Questions' ),
 				Field::textarea( 'faq_intro', 'Intro Copy' )
 					->description( 'Shown above the accordion of questions.' )
-					->args( array( 'rows' => 2 ) )
-					->toArray(),
-				Field::checkbox( 'faq_show_search', 'Display Search Box' )
-					->toArray(),
+					->args( array( 'rows' => 2 ) ),
+				Field::checkbox( 'faq_show_search', 'Display Search Box' ),
 			),
 		);
 	}
