@@ -21,8 +21,6 @@ class Accordion {
 	/**
 	 * Register the accordion example section.
 	 *
-	 * Register the accordion example section.
-	 *
 	 * @return void
 	 */
 	public static function register(): void {
