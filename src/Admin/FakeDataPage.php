@@ -76,7 +76,7 @@ class FakeDataPage {
 
 			printf(
 				'<div class="notice notice-success is-dismissible"><p><strong>%s</strong> %s</p></div>',
-				$headline,
+				esc_html( $headline ),
 				esc_html( $body )
 			);
 		} elseif ( $message === 'deleted' ) {
@@ -92,7 +92,7 @@ class FakeDataPage {
 
 			printf(
 				'<div class="notice notice-warning is-dismissible"><p><strong>%s</strong> %s</p></div>',
-				$headline,
+				esc_html( $headline ),
 				esc_html( $body )
 			);
 		}
