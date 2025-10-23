@@ -24,10 +24,6 @@ class Color {
 	 * @return void
 	 */
 	public static function register(): void {
-		$palette = function_exists( 'wp_json_encode' )
-			? wp_json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) )
-			: json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) );
-
 		Moo::section( 'color_examples', __( 'Color Picker', 'wpmoo-starter' ) )
 			->parent( 'wpmoo_starter_settings' )
 			->description( __( 'Example configurations for the WordPress color picker.', 'wpmoo-starter' ) )
@@ -42,7 +38,14 @@ class Color {
 				Field::color( 'color_palette', __( 'Restricted Palette', 'wpmoo-starter' ) )
 					->description( __( 'Pass a palette via data attributes to guide selection.', 'wpmoo-starter' ) )
 					->after( '<p class="description">' . __( 'Choose from the curated brand palette below.', 'wpmoo-starter' ) . '</p>' )
-					->attributes(['data-palette' => $palette])
+					->default(
+						array(
+							'#2271b1',
+							'#198754',
+							'#d63638',
+							'#f59e0b',
+						)
+					)
 					->help( __( 'Palette values are encoded into the input and parsed in JavaScript.', 'wpmoo-starter' ) ),
 
 				Field::color( 'color_with_context', __( 'CTA Button Background', 'wpmoo-starter' ) )
