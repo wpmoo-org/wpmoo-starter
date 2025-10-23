@@ -12,7 +12,8 @@ namespace WPMooStarter\PostTypes;
 
 use WPMoo\Moo;
 use WPMoo\Options\Field;
-use WPMoo\PostType\PostType;
+use WPMoo\PostTypes\PostType;
+use WPMoo\Taxonomies\Taxonomy;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -55,33 +56,9 @@ class Event {
 	 * @return void
 	 */
 	public static function boot(): void {
-		$event = PostType::create( 'event' )
-			->singular( __( 'Event', 'wpmoo-starter' ) )
-			->plural( __( 'Events', 'wpmoo-starter' ) )
-			->description( __( 'Manage upcoming events published by the starter plugin.', 'wpmoo-starter' ) )
-			->slug( 'events' )
-			->public()
-			->showInRest()
-			->supports( array( 'title', 'editor', 'thumbnail', 'excerpt' ) )
-			->menuIcon( 'dashicons-calendar-alt' )
-			->taxonomy( 'genre' )
-			->hasArchive();
 
-		// Add custom columns.
-		$event->columns()
-			->add( 'genre', __( 'Genre', 'wpmoo-starter' ) )
-			->populate( 'genre', array( self::class, 'populate_genre_column' ) )
-			->add( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
-			->populate( 'event_date', array( self::class, 'populate_date_column' ) )
-			->sortable( 'event_date', array( 'event_date', true ) )
-			->add( 'location', __( 'Location', 'wpmoo-starter' ) )
-			->populate( 'location', array( self::class, 'populate_location_column' ) )
-			->add( 'capacity', __( 'Capacity', 'wpmoo-starter' ) )
-			->populate( 'capacity', array( self::class, 'populate_capacity_column' ) )
-			->sortable( 'capacity', array( 'event_capacity', true ) )
-			->hide( array( 'date' ) );
 
-        $event->register();
+		
 
         self::register_metabox();
 	}

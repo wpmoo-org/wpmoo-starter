@@ -12,8 +12,8 @@ use WPMoo\Options\Options;
 use WPMooStarter\Admin\FakeDataPage;
 use WPMooStarter\Models\Book;
 use WPMooStarter\Pages\Settings\Settings as SettingsPage;
-use WPMooStarter\PostTypes\Event;
-use WPMooStarter\Taxonomies\Genre;
+use WPMoo\PostTypes\PostType;
+use WPMoo\Taxonomies\Taxonomy;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -24,5 +24,28 @@ if ( ! function_exists( 'is_admin' ) || is_admin() ) {
     FakeDataPage::init();
 }
 
-Event::register();
-Genre::register();
+// Create a book post type.
+$events = new PostType( 'event' );
+
+// Attach the genre taxonomy (which is created below).
+$events->taxonomy( 'genre' );
+
+// Hide the date and author columns.
+$events->column()->hide( [ 'date', 'author' ] );
+
+// Set the Events menu icon.
+$events->icon( 'dashicons-book-alt' );
+
+// Register the post type to WordPress.
+$events->register();
+
+// Create a genre taxonomy.
+$genres = new Taxonomy( 'genre' );
+
+// Set options for the taxonomy.
+$genres->options( [
+    'hierarchical' => false,
+] );
+
+// Register the taxonomy to WordPress.
+$genres->register();
