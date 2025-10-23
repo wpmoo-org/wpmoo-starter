@@ -13,13 +13,6 @@
       "options": {
         "symlink": true
       }
-    },
-    {
-      "type": "path",
-      "url": "../wpmoo-coding-standards",
-      "options": {
-        "symlink": true
-      }
     }
   ],
   "autoload": {
