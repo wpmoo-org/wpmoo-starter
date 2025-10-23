@@ -24,7 +24,7 @@ class Accordion {
 	 * @return void
 	 */
 	public static function register(): void {
-		Moo::make( 'section', 'accordion_examples', 'Accordion Examples' )
+		Moo::section( 'accordion_examples', 'Accordion Examples' )
 			->parent( 'wpmoo_starter_settings' )
 			->description( 'Organise fields into collapsible groups with nested field definitions.' )
 			->icon( 'dashicons-menu' )

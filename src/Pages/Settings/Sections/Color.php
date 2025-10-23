@@ -28,7 +28,7 @@ class Color {
 			? wp_json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) )
 			: json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) );
 
-		Moo::make( 'section', 'color_examples', 'Color Picker' )
+		Moo::section( 'color_examples', 'Color Picker' )
 			->parent( 'wpmoo_starter_settings' )
 			->description( 'Example configurations for the WordPress color picker.' )
 			->icon( 'dashicons-art' )

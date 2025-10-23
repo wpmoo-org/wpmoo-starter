@@ -24,7 +24,7 @@ class Text {
 	 * @return void
 	 */
 	public static function register(): void {
-		Moo::make( 'section', 'text_examples', 'Text Examples' )
+		Moo::section( 'text_examples', 'Text Examples' )
 			->parent( 'wpmoo_starter_settings' )
 			->description( 'Examples showing how to configure single line inputs.' )
 			->icon( 'dashicons-editor-textcolor' )

@@ -27,7 +27,7 @@ class Settings {
 	 * @return void
 	 */
 	public static function register(): void {
-		Moo::make( 'page', 'wpmoo_starter_settings', 'Starter Settings' )
+		Moo::page( 'wpmoo_starter_settings', 'Starter Settings' )
 			->menuTitle( 'WPMoo Starter' )
 			->menuSlug( 'wpmoo-starter-settings' )
 			->capability( 'manage_options' );

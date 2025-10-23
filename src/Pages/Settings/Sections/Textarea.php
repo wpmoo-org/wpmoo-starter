@@ -24,7 +24,7 @@ class Textarea {
 	 * @return void
 	 */
 	public static function register(): void {
-		Moo::make( 'section', 'textarea_examples', 'Textarea Examples' )
+		Moo::section( 'textarea_examples', 'Textarea Examples' )
 			->parent( 'wpmoo_starter_settings' )
 			->description( 'Examples covering multi-line inputs and formatting helpers.' )
 			->icon( 'dashicons-editor-paragraph' )
