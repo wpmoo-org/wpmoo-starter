@@ -1,6 +1,29 @@
 {
   "name": "wpmoo/wpmoo-starter",
   "description": "Starter plugin demonstrating WPMoo Framework usage.",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://wpmoo.org",
+  "authors": [
+    {
+      "name": "WPMoo",
+      "email": "hello@wpmoo.org",
+      "homepage": "https://wpmoo.org/"
+    }
+  ],
+  "keywords": [
+    "wordpress",
+    "wp-cli",
+    "plugin",
+    "starter",
+    "php",
+    "php7.4",
+    "php8.0",
+    "php8.1",
+    "php8.2",
+    "php8.3",
+    "oop",
+    "object-oriented"
+  ],
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.4",
@@ -40,6 +63,14 @@
     ],
     "post-update-cmd": [
       "@sync-moo"
+    ],
+    "check:validate": "composer validate",
+    "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
+    "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+    "check": [
+      "@check:validate",
+      "@lint:php",
+      "@phpcs"
     ]
   }
 }

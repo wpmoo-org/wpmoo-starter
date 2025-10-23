@@ -6,6 +6,8 @@
  * @since 0.2.0
  */
 
+// phpcs:disable WordPress.Files.FileName
+
 namespace WPMooStarter\PostTypes;
 
 use WPMoo\Moo;
@@ -13,7 +15,7 @@ use WPMoo\Options\Field;
 use WPMoo\PostType\PostType;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**
@@ -113,7 +115,6 @@ class Event {
 				Field::text( 'event_type', __( 'Event Type', 'wpmoo-starter' ) )
 					->description( __( 'Examples: conference, workshop, webinar.', 'wpmoo-starter' ) )
 					->placeholder( __( 'Conference', 'wpmoo-starter' ) ),
-
 				Field::text( 'event_location', __( 'Location', 'wpmoo-starter' ) )
 					->placeholder( __( 'Berlin, Germany', 'wpmoo-starter' ) )
 			);
@@ -125,7 +126,6 @@ class Event {
 			->fields(
 				Field::text( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
 					->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
-
 				Field::text( 'event_capacity', __( 'Capacity', 'wpmoo-starter' ) )
 					->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
 					->placeholder( __( '200', 'wpmoo-starter' ) )
@@ -151,8 +151,16 @@ class Event {
 
 		$genre_links = array();
 		foreach ( $terms as $term ) {
-			$icon = get_term_meta( $term->term_id, 'genre_icon', true );
-			$icon_html = $icon ? "<span class='dashicons {$icon}' style='font-size: 16px; vertical-align: text-bottom;'></span> " : '';
+			$icon      = get_term_meta( $term->term_id, 'genre_icon', true );
+			$icon_html = '';
+
+			if ( $icon ) {
+				$icon_html = sprintf(
+					"<span class='dashicons %s' style='font-size: 16px; vertical-align: text-bottom;'></span> ",
+					esc_attr( $icon )
+				);
+			}
+
 			$genre_links[] = sprintf(
 				'<a href="%s">%s%s</a>',
 				esc_url( admin_url( 'edit.php?post_type=event&genre=' . $term->slug ) ),
@@ -179,15 +187,17 @@ class Event {
 			return;
 		}
 
-		$date = date_i18n( 'M j, Y', $timestamp );
+		$date      = date_i18n( 'M j, Y', $timestamp );
 		$time_diff = human_time_diff( $timestamp, time() );
 
 		if ( $timestamp > time() ) {
 			echo '<strong style="color: #2271b1;">' . esc_html( $date ) . '</strong><br>';
+			/* translators: %s: Human readable time difference. */
 			$message = sprintf( __( 'in %s', 'wpmoo-starter' ), $time_diff );
 			echo '<small>' . esc_html( $message ) . '</small>';
 		} else {
 			echo '<span style="color: #999;">' . esc_html( $date ) . '</span><br>';
+			/* translators: %s: Human readable time difference. */
 			$message = sprintf( __( '%s ago', 'wpmoo-starter' ), $time_diff );
 			echo '<small>' . esc_html( $message ) . '</small>';
 		}
@@ -220,7 +230,7 @@ class Event {
 	 * @return void
 	 */
 	public static function populate_capacity_column( $column, $post_id ): void {
-		$capacity = get_post_meta( $post_id, 'event_capacity', true );
+		$capacity   = get_post_meta( $post_id, 'event_capacity', true );
 		$registered = get_post_meta( $post_id, 'event_registered', true );
 
 		if ( ! $capacity ) {
@@ -229,12 +239,12 @@ class Event {
 		}
 
 		$percentage = $registered ? ( $registered / $capacity ) * 100 : 0;
-		$color = '#10b981'; // Green
+		$color      = '#10b981'; // Green.
 
 		if ( $percentage > 80 ) {
-			$color = '#ef4444'; // Red
+			$color = '#ef4444'; // Red.
 		} elseif ( $percentage > 50 ) {
-			$color = '#f59e0b'; // Orange
+			$color = '#f59e0b'; // Orange.
 		}
 
 		echo '<div style="margin-bottom: 5px;">';
@@ -245,6 +255,7 @@ class Event {
 		echo '<div style="background: #f0f0f1; height: 6px; border-radius: 3px; overflow: hidden;">';
 		echo '<div style="background: ' . esc_attr( $color ) . '; width: ' . esc_attr( min( $percentage, 100 ) ) . '%; height: 100%;"></div>';
 		echo '</div>';
+		/* translators: %s: Percentage of seats filled. */
 		$full_text = sprintf( __( '%s%% full', 'wpmoo-starter' ), number_format( $percentage, 1 ) );
 		echo '<small style="color: #666;">' . esc_html( $full_text ) . '</small>';
 	}
