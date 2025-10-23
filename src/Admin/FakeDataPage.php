@@ -36,8 +36,8 @@ class FakeDataPage {
 	 */
 	public static function add_menu(): void {
 		add_management_page(
-			'Fake Data Generator',
-			'Fake Data',
+			__( 'Fake Data Generator', 'wpmoo-starter' ),
+			__( 'Fake Data', 'wpmoo-starter' ),
 			'manage_options',
 			'wpmoo-fake-data',
 			[ __CLASS__, 'render_page' ]
@@ -67,19 +67,33 @@ class FakeDataPage {
 			$genres = isset( $_GET['genres'] ) ? (int) $_GET['genres'] : 0;
 			$events = isset( $_GET['events'] ) ? (int) $_GET['events'] : 0;
 
+			$headline = esc_html__( '✨ Success!', 'wpmoo-starter' );
+			$body     = sprintf(
+				__( 'Generated %1$d genres and %2$d events.', 'wpmoo-starter' ),
+				$genres,
+				$events
+			);
+
 			printf(
-				'<div class="notice notice-success is-dismissible"><p><strong>✨ Success!</strong> Generated %d genres and %d events.</p></div>',
-				esc_html( $genres ),
-				esc_html( $events )
+				'<div class="notice notice-success is-dismissible"><p><strong>%s</strong> %s</p></div>',
+				$headline,
+				esc_html( $body )
 			);
 		} elseif ( $message === 'deleted' ) {
 			$genres = isset( $_GET['genres'] ) ? (int) $_GET['genres'] : 0;
 			$events = isset( $_GET['events'] ) ? (int) $_GET['events'] : 0;
 
+			$headline = esc_html__( '🗑️ Deleted!', 'wpmoo-starter' );
+			$body     = sprintf(
+				__( 'Removed %1$d events and %2$d genres.', 'wpmoo-starter' ),
+				$events,
+				$genres
+			);
+
 			printf(
-				'<div class="notice notice-warning is-dismissible"><p><strong>🗑️ Deleted!</strong> Removed %d events and %d genres.</p></div>',
-				esc_html( $events ),
-				esc_html( $genres )
+				'<div class="notice notice-warning is-dismissible"><p><strong>%s</strong> %s</p></div>',
+				$headline,
+				esc_html( $body )
 			);
 		}
 	}
@@ -101,45 +115,45 @@ class FakeDataPage {
 
 		?>
 		<div class="wrap">
-			<h1>🎭 WPMoo Fake Data Generator</h1>
+			<h1><?php esc_html_e( '🎭 WPMoo Fake Data Generator', 'wpmoo-starter' ); ?></h1>
 
 			<div class="card" style="max-width: 800px;">
-				<h2>📊 Current Status</h2>
+				<h2><?php esc_html_e( '📊 Current Status', 'wpmoo-starter' ); ?></h2>
 				<table class="widefat" style="width: auto; min-width: 400px;">
 					<tbody>
 						<tr>
-							<td><strong>Events:</strong></td>
-							<td><?php echo esc_html( $event_count->publish ); ?> published</td>
+							<td><strong><?php esc_html_e( 'Events:', 'wpmoo-starter' ); ?></strong></td>
+							<td><?php printf( esc_html__( '%d published', 'wpmoo-starter' ), (int) $event_count->publish ); ?></td>
 						</tr>
 						<tr>
-							<td><strong>Genres:</strong></td>
-							<td><?php echo esc_html( $genre_count ); ?> terms</td>
+							<td><strong><?php esc_html_e( 'Genres:', 'wpmoo-starter' ); ?></strong></td>
+							<td><?php printf( esc_html__( '%d terms', 'wpmoo-starter' ), (int) $genre_count ); ?></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 
 			<div class="card" style="max-width: 800px;">
-				<h2>🎨 Generate Fake Data</h2>
-				<p>This will create sample Events and Genres with custom columns and metadata.</p>
+				<h2><?php esc_html_e( '🎨 Generate Fake Data', 'wpmoo-starter' ); ?></h2>
+				<p><?php esc_html_e( 'This will create sample Events and Genres with custom columns and metadata.', 'wpmoo-starter' ); ?></p>
 				
-				<h3>What will be created:</h3>
+				<h3><?php esc_html_e( 'What will be created:', 'wpmoo-starter' ); ?></h3>
 				<ul style="list-style: disc; margin-left: 20px;">
-					<li><strong>8 Genre terms</strong> with:
+					<li><?php echo wp_kses_post( sprintf( __( '<strong>%s Genre terms</strong> with:', 'wpmoo-starter' ), number_format_i18n( 8 ) ) ); ?>
 						<ul style="list-style: circle; margin-left: 20px;">
-							<li>Featured status (for testing sortable columns)</li>
-							<li>Custom icons (dashicons)</li>
-							<li>Music Concert, Tech Conference, Art Exhibition, Sports Event, Food Festival, Theater, Workshop, Networking</li>
+							<li><?php esc_html_e( 'Featured status (for testing sortable columns)', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Custom icons (dashicons)', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Music Concert, Tech Conference, Art Exhibition, Sports Event, Food Festival, Theater, Workshop, Networking', 'wpmoo-starter' ); ?></li>
 						</ul>
 					</li>
-					<li><strong>15 Event posts</strong> with:
+					<li><?php echo wp_kses_post( sprintf( __( '<strong>%s Event posts</strong> with:', 'wpmoo-starter' ), number_format_i18n( 15 ) ) ); ?>
 						<ul style="list-style: circle; margin-left: 20px;">
-							<li>Full content and descriptions</li>
-							<li>Event dates (upcoming events)</li>
-							<li>Location data</li>
-							<li>Capacity and pricing</li>
-							<li>Random registration numbers</li>
-							<li>Genre assignments</li>
+							<li><?php esc_html_e( 'Full content and descriptions', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Event dates (upcoming events)', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Location data', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Capacity and pricing', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Random registration numbers', 'wpmoo-starter' ); ?></li>
+							<li><?php esc_html_e( 'Genre assignments', 'wpmoo-starter' ); ?></li>
 						</ul>
 					</li>
 				</ul>
@@ -149,41 +163,41 @@ class FakeDataPage {
 					<input type="hidden" name="action" value="generate_fake_data">
 					<p>
 						<button type="submit" class="button button-primary button-hero">
-							✨ Generate Fake Data
+							<?php esc_html_e( '✨ Generate Fake Data', 'wpmoo-starter' ); ?>
 						</button>
 					</p>
 				</form>
 			</div>
 
 			<div class="card" style="max-width: 800px; border-left: 4px solid #dc3232;">
-				<h2 style="color: #dc3232;">🗑️ Delete All Data</h2>
-				<p><strong>Warning:</strong> This will permanently delete all Events and Genres!</p>
+				<h2 style="color: #dc3232;"><?php esc_html_e( '🗑️ Delete All Data', 'wpmoo-starter' ); ?></h2>
+				<p><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> This will permanently delete all Events and Genres!', 'wpmoo-starter' ), esc_html__( 'Warning:', 'wpmoo-starter' ) ) ); ?></p>
 
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" 
-					  onsubmit="return confirm('Are you sure you want to delete ALL Events and Genres? This cannot be undone!');">
+					  onsubmit="return confirm('<?php echo esc_js( __( 'Are you sure you want to delete ALL Events and Genres? This cannot be undone!', 'wpmoo-starter' ) ); ?>');">
 					<?php wp_nonce_field( 'delete_fake_data', 'fake_data_nonce' ); ?>
 					<input type="hidden" name="action" value="delete_fake_data">
 					<p>
 						<button type="submit" class="button button-secondary">
-							🗑️ Delete All Events & Genres
+							<?php esc_html_e( '🗑️ Delete All Events & Genres', 'wpmoo-starter' ); ?>
 						</button>
 					</p>
 				</form>
 			</div>
 
 			<div class="card" style="max-width: 800px; background: #f0f6fc;">
-				<h2>💡 Quick Tips</h2>
+				<h2><?php esc_html_e( '💡 Quick Tips', 'wpmoo-starter' ); ?></h2>
 				<ul style="list-style: disc; margin-left: 20px;">
-					<li>Visit <strong>Events > All Events</strong> to see the generated events</li>
-					<li>Visit <strong>Events > Genres</strong> to see custom columns in action:
+					<li><?php echo wp_kses_post( sprintf( __( 'Visit <strong>%s</strong> to see the generated events', 'wpmoo-starter' ), esc_html__( 'Events > All Events', 'wpmoo-starter' ) ) ); ?></li>
+					<li><?php echo wp_kses_post( sprintf( __( 'Visit <strong>%s</strong> to see custom columns in action:', 'wpmoo-starter' ), esc_html__( 'Events > Genres', 'wpmoo-starter' ) ) ); ?>
 						<ul style="list-style: circle; margin-left: 20px;">
-							<li><strong>Events</strong> column shows event count per genre</li>
-							<li><strong>Featured</strong> column shows featured status (★)</li>
-							<li>Both columns are <strong>sortable</strong>!</li>
+							<li><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> column shows event count per genre', 'wpmoo-starter' ), esc_html__( 'Events', 'wpmoo-starter' ) ) ); ?></li>
+							<li><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> column shows featured status (★)', 'wpmoo-starter' ), esc_html__( 'Featured', 'wpmoo-starter' ) ) ); ?></li>
+							<li><?php echo wp_kses_post( sprintf( __( 'Both columns are <strong>%s</strong>!', 'wpmoo-starter' ), esc_html__( 'sortable', 'wpmoo-starter' ) ) ); ?></li>
 						</ul>
 					</li>
-					<li>Click on column headers to sort by different criteria</li>
-					<li>Check event meta fields for additional data (date, location, capacity, etc.)</li>
+					<li><?php esc_html_e( 'Click on column headers to sort by different criteria', 'wpmoo-starter' ); ?></li>
+					<li><?php esc_html_e( 'Check event meta fields for additional data (date, location, capacity, etc.)', 'wpmoo-starter' ); ?></li>
 				</ul>
 			</div>
 		</div>

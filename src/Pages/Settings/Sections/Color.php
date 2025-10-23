@@ -28,27 +28,27 @@ class Color {
 			? wp_json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) )
 			: json_encode( array( '#2271b1', '#198754', '#d63638', '#f59e0b' ) );
 
-		Moo::section( 'color_examples', 'Color Picker' )
+		Moo::section( 'color_examples', __( 'Color Picker', 'wpmoo-starter' ) )
 			->parent( 'wpmoo_starter_settings' )
-			->description( 'Example configurations for the WordPress color picker.' )
+			->description( __( 'Example configurations for the WordPress color picker.', 'wpmoo-starter' ) )
 			->icon( 'dashicons-art' )
 			->fields(
-				Field::color( 'color_brand', 'Brand Color' )
-					->description( 'Default value defines your brand colour swatch.' )
-					->after( '<p class="description">Applies to headers, highlights, and primary buttons.</p>' )
+				Field::color( 'color_brand', __( 'Brand Color', 'wpmoo-starter' ) )
+					->description( __( 'Default value defines your brand colour swatch.', 'wpmoo-starter' ) )
+					->after( '<p class="description">' . __( 'Applies to headers, highlights, and primary buttons.', 'wpmoo-starter' ) . '</p>' )
 					->default( '#8a00d4' )
-					->help( 'Pick something accessible against both light and dark backgrounds.' ),
+					->help( __( 'Pick something accessible against both light and dark backgrounds.', 'wpmoo-starter' ) ),
 
-				Field::color( 'color_palette', 'Restricted Palette' )
-					->description( 'Pass a palette via data attributes to guide selection.' )
-					->after( '<p class="description">Choose from the curated brand palette below.</p>' )
+				Field::color( 'color_palette', __( 'Restricted Palette', 'wpmoo-starter' ) )
+					->description( __( 'Pass a palette via data attributes to guide selection.', 'wpmoo-starter' ) )
+					->after( '<p class="description">' . __( 'Choose from the curated brand palette below.', 'wpmoo-starter' ) . '</p>' )
 					->attributes(['data-palette' => $palette])
-					->help( 'Palette values are encoded into the input and parsed in JavaScript.' ),
+					->help( __( 'Palette values are encoded into the input and parsed in JavaScript.', 'wpmoo-starter' ) ),
 
-				Field::color( 'color_with_context', 'CTA Button Background' )
-					->description( 'Example using before/after hints for context.' )
-					->after( '<p class="description">Used for call-to-action buttons.</p>' )
-					->after( '<p class="description">Adjust text colour manually if needed for contrast.</p>' )
+				Field::color( 'color_with_context', __( 'CTA Button Background', 'wpmoo-starter' ) )
+					->description( __( 'Example using before/after hints for context.', 'wpmoo-starter' ) )
+					->after( '<p class="description">' . __( 'Used for call-to-action buttons.', 'wpmoo-starter' ) . '</p>' )
+					->after( '<p class="description">' . __( 'Adjust text colour manually if needed for contrast.', 'wpmoo-starter' ) . '</p>' )
 					->default( '#2271b1' )
 			);
 	}

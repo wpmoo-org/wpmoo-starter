@@ -19,15 +19,42 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Genre {
 	/**
+	 * Whether the taxonomy registration has been scheduled.
+	 *
+	 * @var bool
+	 */
+	protected static $registered = false;
+
+	/**
 	 * Register the taxonomy.
 	 *
 	 * @return void
 	 */
 	public static function register(): void {
+		if ( self::$registered ) {
+			return;
+		}
+
+		self::$registered = true;
+
+		if ( did_action( 'init' ) ) {
+			self::boot();
+			return;
+		}
+
+		add_action( 'init', array( __CLASS__, 'boot' ) );
+	}
+
+	/**
+	 * Perform the actual taxonomy registration.
+	 *
+	 * @return void
+	 */
+	public static function boot(): void {
 		$taxonomy = Taxonomy::create( 'genre' )
-			->singular( 'Genre' )
-			->plural( 'Genres' )
-			->description( 'Group events by genre or category.' )
+			->singular( __( 'Genre', 'wpmoo-starter' ) )
+			->plural( __( 'Genres', 'wpmoo-starter' ) )
+			->description( __( 'Group events by genre or category.', 'wpmoo-starter' ) )
 			->hierarchical( false )
 			->public()
 			->showInRest()
@@ -36,10 +63,10 @@ class Genre {
 
 		// Add custom columns to genre taxonomy admin.
 		$taxonomy->columns()
-			->add( 'event_count', 'Events' )
+			->add( 'event_count', __( 'Events', 'wpmoo-starter' ) )
 			->populate( 'event_count', array( self::class, 'populate_event_count' ) )
 			->sortable( 'event_count', array( 'event_count', true ) )
-			->add( 'featured', 'Featured' )
+			->add( 'featured', __( 'Featured', 'wpmoo-starter' ) )
 			->populate( 'featured', array( self::class, 'populate_featured' ) )
 			->sortable( 'featured', 'featured_genre' );
 
@@ -55,9 +82,6 @@ class Genre {
 	 * @return string
 	 */
 	public static function populate_event_count( $content, $column, $term_id ) {
-		$count = wp_count_posts( 'event' ); // You could make this more precise.
-		$term  = get_term( $term_id, 'genre' );
-		
 		// Get actual count for this genre.
 		$query = new \WP_Query(
 			array(
@@ -76,7 +100,9 @@ class Genre {
 		$count = $query->found_posts;
 		wp_reset_postdata();
 
-		return '<strong>' . $count . '</strong> event' . ( $count !== 1 ? 's' : '' );
+		$label = _n( 'event', 'events', $count, 'wpmoo-starter' );
+
+		return '<strong>' . intval( $count ) . '</strong> ' . esc_html( $label );
 	}
 
 	/**
@@ -89,11 +115,11 @@ class Genre {
 	 */
 	public static function populate_featured( $content, $column, $term_id ) {
 		$featured = get_term_meta( $term_id, 'featured_genre', true );
-		
+
 		if ( $featured ) {
-			return '<span style="color: #46b450;">★ Featured</span>';
+			return '<span style="color: #46b450;">★ ' . esc_html__( 'Featured', 'wpmoo-starter' ) . '</span>';
 		}
-		
+
 		return '<span style="color: #ddd;">—</span>';
 	}
 }

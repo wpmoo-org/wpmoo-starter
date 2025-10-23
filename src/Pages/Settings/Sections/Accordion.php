@@ -24,13 +24,13 @@ class Accordion {
 	 * @return void
 	 */
 	public static function register(): void {
-		Moo::section( 'accordion_examples', 'Accordion Examples' )
+		Moo::section( 'accordion_examples', __( 'Accordion Examples', 'wpmoo-starter' ) )
 			->parent( 'wpmoo_starter_settings' )
-			->description( 'Organise fields into collapsible groups with nested field definitions.' )
+			->description( __( 'Organise fields into collapsible groups with nested field definitions.', 'wpmoo-starter' ) )
 			->icon( 'dashicons-menu' )
 			->fields(
-				Field::accordion( 'content_blocks', 'Homepage Blocks' )
-					->description( 'Each accordion panel renders its own collection of fields.' )
+				Field::accordion( 'content_blocks', __( 'Homepage Blocks', 'wpmoo-starter' ) )
+					->description( __( 'Each accordion panel renders its own collection of fields.', 'wpmoo-starter' ) )
 					->set( 'sections', array(
 						self::hero_panel(),
 						self::feature_panel(),
@@ -47,27 +47,27 @@ class Accordion {
 	protected static function hero_panel(): array {
 		return array(
 			'id'     => 'hero',
-			'title'  => 'Hero Banner',
+			'title'  => __( 'Hero Banner', 'wpmoo-starter' ),
 			'open'   => true,
 			'fields' => array(
-				Field::text( 'hero_title', 'Headline' )
-					->default( 'Welcome to WPMoo Starter' )
-					->placeholder( 'Enter a strong headline' )
-					->help( 'Keep the headline under 60 characters for optimal layout.' ),
-				Field::textarea( 'hero_subtitle', 'Subtitle' )
-					->description( 'Shown below the headline.' )
-					->before( '<p class="description">Explain the product value in one or two sentences.</p>' )
+				Field::text( 'hero_title', __( 'Headline', 'wpmoo-starter' ) )
+					->default( __( 'Welcome to WPMoo Starter', 'wpmoo-starter' ) )
+					->placeholder( __( 'Enter a strong headline', 'wpmoo-starter' ) )
+					->help( __( 'Keep the headline under 60 characters for optimal layout.', 'wpmoo-starter' ) ),
+				Field::textarea( 'hero_subtitle', __( 'Subtitle', 'wpmoo-starter' ) )
+					->description( __( 'Shown below the headline.', 'wpmoo-starter' ) )
+					->before( '<p class="description">' . __( 'Explain the product value in one or two sentences.', 'wpmoo-starter' ) . '</p>' )
 					->attributes( array( 'rows' => 3 ) )
-					->help( 'Supports HTML formatting for emphasis if needed.' ),
-				Field::text( 'hero_primary_label', 'Primary Button Label' )
-					->default( 'Get Started' )
-					->help( 'Leave empty to hide the button.' ),
-				Field::text( 'hero_primary_url', 'Primary Button URL' )
+					->help( __( 'Supports HTML formatting for emphasis if needed.', 'wpmoo-starter' ) ),
+				Field::text( 'hero_primary_label', __( 'Primary Button Label', 'wpmoo-starter' ) )
+					->default( __( 'Get Started', 'wpmoo-starter' ) )
+					->help( __( 'Leave empty to hide the button.', 'wpmoo-starter' ) ),
+				Field::text( 'hero_primary_url', __( 'Primary Button URL', 'wpmoo-starter' ) )
 					->attributes( array( 'type' => 'url' ) )
-					->help( 'Button links open in the same tab by default.' ),
-				Field::checkbox( 'hero_enabled', 'Display Hero Section' )
+					->help( __( 'Button links open in the same tab by default.', 'wpmoo-starter' ) ),
+				Field::checkbox( 'hero_enabled', __( 'Display Hero Section', 'wpmoo-starter' ) )
 					->default( 1 )
-					->help( 'Disable if your theme provides its own hero section.' ),
+					->help( __( 'Disable if your theme provides its own hero section.', 'wpmoo-starter' ) ),
 			),
 		);
 	}
@@ -80,16 +80,16 @@ class Accordion {
 	protected static function feature_panel(): array {
 		return array(
 			'id'     => 'feature_strip',
-			'title'  => 'Feature Strip',
+			'title'  => __( 'Feature Strip', 'wpmoo-starter' ),
 			'fields' => array(
-				Field::text( 'features_heading', 'Heading' )
-					->default( 'Why customers love us' )
-					->help( 'Appears above the feature list on the homepage.' ),
-				Field::textarea( 'features_copy', 'Supporting Copy' )
+				Field::text( 'features_heading', __( 'Heading', 'wpmoo-starter' ) )
+					->default( __( 'Why customers love us', 'wpmoo-starter' ) )
+					->help( __( 'Appears above the feature list on the homepage.', 'wpmoo-starter' ) ),
+				Field::textarea( 'features_copy', __( 'Supporting Copy', 'wpmoo-starter' ) )
 					->attributes( array( 'rows' => 3 ) ),
-				Field::color( 'features_background', 'Background Colour' )
+				Field::color( 'features_background', __( 'Background Colour', 'wpmoo-starter' ) )
 					->default( '#f3f4f6' )
-					->help( 'Choose a subtle neutral shade for readability.' ),
+					->help( __( 'Choose a subtle neutral shade for readability.', 'wpmoo-starter' ) ),
 			),
 		);
 	}
@@ -102,17 +102,17 @@ class Accordion {
 	protected static function faq_panel(): array {
 		return array(
 			'id'     => 'faq',
-			'title'  => 'FAQ',
+			'title'  => __( 'FAQ', 'wpmoo-starter' ),
 			'fields' => array(
-				Field::text( 'faq_title', 'Section Title' )
-					->default( 'Frequently Asked Questions' )
-					->help( 'Keep the title short so it fits on mobile.' ),
-				Field::textarea( 'faq_intro', 'Intro Copy' )
-					->description( 'Shown above the accordion of questions.' )
+				Field::text( 'faq_title', __( 'Section Title', 'wpmoo-starter' ) )
+					->default( __( 'Frequently Asked Questions', 'wpmoo-starter' ) )
+					->help( __( 'Keep the title short so it fits on mobile.', 'wpmoo-starter' ) ),
+				Field::textarea( 'faq_intro', __( 'Intro Copy', 'wpmoo-starter' ) )
+					->description( __( 'Shown above the accordion of questions.', 'wpmoo-starter' ) )
 					->attributes( array( 'rows' => 2 ) )
-					->help( 'Supports line breaks for longer context.' ),
-				Field::checkbox( 'faq_show_search', 'Display Search Box' )
-					->help( 'Adds a keyword filter to the FAQ list.' ),
+					->help( __( 'Supports line breaks for longer context.', 'wpmoo-starter' ) ),
+				Field::checkbox( 'faq_show_search', __( 'Display Search Box', 'wpmoo-starter' ) )
+					->help( __( 'Adds a keyword filter to the FAQ list.', 'wpmoo-starter' ) ),
 			),
 		);
 	}

@@ -19,15 +19,42 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Event {
 	/**
+	 * Tracks whether the registration has been scheduled.
+	 *
+	 * @var bool
+	 */
+	protected static $registered = false;
+
+	/**
 	 * Register the post type using the fluent builder.
 	 *
 	 * @return void
 	 */
 	public static function register(): void {
+		if ( self::$registered ) {
+			return;
+		}
+
+		self::$registered = true;
+
+		if ( did_action( 'init' ) ) {
+			self::boot();
+			return;
+		}
+
+		add_action( 'init', array( __CLASS__, 'boot' ) );
+	}
+
+	/**
+	 * Perform the actual post type registration.
+	 *
+	 * @return void
+	 */
+	public static function boot(): void {
 		$event = PostType::create( 'event' )
-			->singular( 'Event' )
-			->plural( 'Events' )
-			->description( 'Manage upcoming events published by the starter plugin.' )
+			->singular( __( 'Event', 'wpmoo-starter' ) )
+			->plural( __( 'Events', 'wpmoo-starter' ) )
+			->description( __( 'Manage upcoming events published by the starter plugin.', 'wpmoo-starter' ) )
 			->slug( 'events' )
 			->public()
 			->showInRest()
@@ -38,14 +65,14 @@ class Event {
 
 		// Add custom columns.
 		$event->columns()
-			->add( 'genre', 'Genre' )
+			->add( 'genre', __( 'Genre', 'wpmoo-starter' ) )
 			->populate( 'genre', array( self::class, 'populate_genre_column' ) )
-			->add( 'event_date', 'Event Date' )
+			->add( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
 			->populate( 'event_date', array( self::class, 'populate_date_column' ) )
 			->sortable( 'event_date', array( 'event_date', true ) )
-			->add( 'location', 'Location' )
+			->add( 'location', __( 'Location', 'wpmoo-starter' ) )
 			->populate( 'location', array( self::class, 'populate_location_column' ) )
-			->add( 'capacity', 'Capacity' )
+			->add( 'capacity', __( 'Capacity', 'wpmoo-starter' ) )
 			->populate( 'capacity', array( self::class, 'populate_capacity_column' ) )
 			->sortable( 'capacity', array( 'event_capacity', true ) )
 			->hide( array( 'date' ) );
@@ -103,10 +130,12 @@ class Event {
 
 		if ( $timestamp > time() ) {
 			echo '<strong style="color: #2271b1;">' . esc_html( $date ) . '</strong><br>';
-			echo '<small>in ' . esc_html( $time_diff ) . '</small>';
+			$message = sprintf( __( 'in %s', 'wpmoo-starter' ), $time_diff );
+			echo '<small>' . esc_html( $message ) . '</small>';
 		} else {
 			echo '<span style="color: #999;">' . esc_html( $date ) . '</span><br>';
-			echo '<small>' . esc_html( $time_diff ) . ' ago</small>';
+			$message = sprintf( __( '%s ago', 'wpmoo-starter' ), $time_diff );
+			echo '<small>' . esc_html( $message ) . '</small>';
 		}
 	}
 
@@ -162,6 +191,7 @@ class Event {
 		echo '<div style="background: #f0f0f1; height: 6px; border-radius: 3px; overflow: hidden;">';
 		echo '<div style="background: ' . esc_attr( $color ) . '; width: ' . esc_attr( min( $percentage, 100 ) ) . '%; height: 100%;"></div>';
 		echo '</div>';
-		echo '<small style="color: #666;">' . esc_html( number_format( $percentage, 1 ) ) . '% full</small>';
+		$full_text = sprintf( __( '%s%% full', 'wpmoo-starter' ), number_format( $percentage, 1 ) );
+		echo '<small style="color: #666;">' . esc_html( $full_text ) . '</small>';
 	}
 }
