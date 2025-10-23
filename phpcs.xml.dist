@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="WPMoo Starter">
+    <description>Shared ruleset usage for the WPMoo Starter plugin.</description>
+
+    <rule ref="WPMoo"/>
+
+    <file>src</file>
+    <file>wpmoo-starter.php</file>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+
+    <config name="minimum_supported_wp_version" value="6.5"/>
+</ruleset>

@@ -13,11 +13,26 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "../wpmoo-coding-standards",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "autoload": {
     "psr-4": {
       "WPMooStarter\\": "src/"
+    }
+  },
+  "require-dev": {
+    "wpmoo/wpmoo-coding-standards": "dev-main"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "minimum-stability": "dev",
