@@ -18,28 +18,22 @@ jobs:
       - name: Setup PHP 7.4
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: "7.4"
           extensions: zip
           tools: composer
 
       - name: Setup Node 18
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Build deploy directory via WPMoo CLI
-        run: |
-          php -v
-          node -v
-          npm -v
-          php moo deploy
+        run: php bin/moo deploy
 
       - name: Deploy to WordPress.org (SVN)
-        uses: 10up/action-wordpress-plugin-deploy@v2
-        with:
-          slug: ${{ github.event.repository.name }}
-          build-dir: dist/${{ env.PLUGIN_DIR }}
+        uses: 10up/action-wordpress-plugin-deploy@2.3.0
         env:
+          SLUG: ${{ github.event.repository.name }}
+          BUILD_DIR: dist/${{ env.PLUGIN_DIR }}
           SVN_USERNAME: ${{ secrets.WPORG_USERNAME }}
           SVN_PASSWORD: ${{ secrets.WPORG_PASSWORD }}
-
