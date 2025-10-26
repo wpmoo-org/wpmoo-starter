@@ -1,7 +1,7 @@
 <?php
 namespace WPMooStarter\CLI;
 
-use WPMoo\Core\Console;
+use WPMoo\CLI\Console;
 
 class HelloCommand
 {

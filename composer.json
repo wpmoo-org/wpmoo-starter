@@ -1,76 +1,76 @@
 {
-  "name": "wpmoo/wpmoo-starter",
-  "description": "Starter plugin demonstrating WPMoo Framework usage.",
-  "license": "GPL-3.0-or-later",
-  "homepage": "https://wpmoo.org",
-  "authors": [
-    {
-      "name": "WPMoo",
-      "email": "hello@wpmoo.org",
-      "homepage": "https://wpmoo.org/"
-    }
-  ],
-  "keywords": [
-    "wordpress",
-    "wp-cli",
-    "plugin",
-    "starter",
-    "php",
-    "php7.4",
-    "php8.0",
-    "php8.1",
-    "php8.2",
-    "php8.3",
-    "oop",
-    "object-oriented"
-  ],
-  "type": "wordpress-plugin",
-  "require": {
-    "php": ">=7.4",
-    "wpmoo-org/wpmoo": "dev-dev"
-  },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../wpmoo",
-      "options": {
-        "symlink": true
-      }
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "WPMooStarter\\": "src/"
-    }
-  },
-  "require-dev": {
-    "wpmoo/wpmoo-coding-standards": "dev-main"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "moo": "php vendor/bin/moo",
-    "sync-moo": [
-      "@php -r \"if (!file_exists('vendor/wpmoo-org/wpmoo/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo-org/wpmoo/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
+    "name": "wpmoo/wpmoo-starter",
+    "description": "Starter plugin demonstrating WPMoo Framework usage.",
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://wpmoo.org",
+    "authors": [
+        {
+            "name": "WPMoo",
+            "email": "hello@wpmoo.org",
+            "homepage": "https://wpmoo.org/"
+        }
     ],
-    "post-install-cmd": [
-      "@sync-moo"
+    "keywords": [
+        "wordpress",
+        "wp-cli",
+        "plugin",
+        "starter",
+        "php",
+        "php7.4",
+        "php8.0",
+        "php8.1",
+        "php8.2",
+        "php8.3",
+        "oop",
+        "object-oriented"
     ],
-    "post-update-cmd": [
-      "@sync-moo"
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.4",
+        "wpmoo/wpmoo": "dev-dev"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../wpmoo",
+            "options": {
+                "symlink": true
+            }
+        }
     ],
-    "check:validate": "composer validate",
-    "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
-    "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
-    "check": [
-      "@check:validate",
-      "@lint:php",
-      "@phpcs"
-    ]
-  }
+    "autoload": {
+        "psr-4": {
+            "WPMooStarter\\": "src/"
+        }
+    },
+    "require-dev": {
+        "wpmoo/wpmoo-coding-standards": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "moo": "php vendor/bin/moo",
+        "sync-moo": [
+            "@php -r \"if (!file_exists('vendor/wpmoo-org/wpmoo/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo-org/wpmoo/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
+        ],
+        "post-install-cmd": [
+            "@sync-moo"
+        ],
+        "post-update-cmd": [
+            "@sync-moo"
+        ],
+        "check:validate": "composer validate",
+        "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+        "check": [
+            "@check:validate",
+            "@lint:php",
+            "@phpcs"
+        ]
+    }
 }
