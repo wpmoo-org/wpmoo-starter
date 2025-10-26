@@ -28,3 +28,6 @@ ehthumbs.db
 node_modules/
 **/.sass-cache
 npm-debug.log
+
+# Ignore compiled CSS assets
+assets/css/

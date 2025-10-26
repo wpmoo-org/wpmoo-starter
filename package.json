@@ -1,0 +1,17 @@
+{
+  "name": "wpmoo-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Build tooling for WPMoo Starter plugin styles.",
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass": "^1.93.2"
+  }
+}
+
