@@ -30,13 +30,8 @@
         "wpmoo/wpmoo": "dev-dev"
     },
     "repositories": [
-        {
-            "type": "path",
-            "url": "../wpmoo",
-            "options": {
-                "symlink": true
-            }
-        }
+        { "type": "path", "url": "../wpmoo", "options": { "symlink": true } },
+        { "type": "path", "url": "../wpmoo-cli", "options": { "symlink": true } }
     ],
     "autoload": {
         "psr-4": {
@@ -44,7 +39,8 @@
         }
     },
     "require-dev": {
-        "wpmoo/wpmoo-coding-standards": "dev-main"
+        "wpmoo/wpmoo-coding-standards": "dev-main",
+        "wpmoo/wpmoo-cli": "dev-dev"
     },
     "config": {
         "allow-plugins": {
@@ -56,7 +52,7 @@
     "scripts": {
         "moo": "php vendor/bin/moo",
         "sync-moo": [
-            "@php -r \"if (!file_exists('vendor/wpmoo-org/wpmoo/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo-org/wpmoo/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
+            "@php -r \"if (!file_exists('vendor/wpmoo/wpmoo-cli/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo/wpmoo-cli/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
         ],
         "post-install-cmd": [
             "@sync-moo"
