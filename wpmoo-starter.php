@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WPMoo Starter Plugin
+ * Plugin Name: WPMoo Starter
  * Description: Starter plugin showcasing WPMoo Framework capabilities.
  * Version: 0.1.0
  * Author: You
