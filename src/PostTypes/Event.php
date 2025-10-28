@@ -244,8 +244,9 @@ class Event {
 		echo '</div>';
 
 		// Progress bar.
-		echo '<div style="background: #f0f0f1; height: 6px; border-radius: 3px; overflow: hidden;">';
-		echo '<div style="background: ' . esc_attr( $color ) . '; width: ' . esc_attr( min( $percentage, 100 ) ) . '%; height: 100%;"></div>';
+        echo '<div style="background: #f0f0f1; height: 6px; border-radius: 3px; overflow: hidden;">';
+        $width = (string) min( (int) $percentage, 100 );
+        echo '<div style="background: ' . esc_attr( $color ) . '; width: ' . esc_attr( $width ) . '%; height: 100%;"></div>';
 		echo '</div>';
 		/* translators: %s: Percentage of seats filled. */
 		$full_text = sprintf( __( '%s%% full', 'wpmoo-starter' ), number_format( $percentage, 1 ) );

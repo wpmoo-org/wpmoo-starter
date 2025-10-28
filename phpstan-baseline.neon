@@ -1,0 +1,17 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method WPMooStarter\\\\Helpers\\\\FakeData\\:\\:delete_all\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Helpers/FakeData.php
+
+		-
+			message: "#^is_wp_error\\(int\\<0, max\\>\\) will always evaluate to false\\.$#"
+			count: 1
+			path: src/Helpers/FakeData.php
+
+		-
+			message: "#^PHPDoc type string\\|null of property WPMooStarter\\\\Models\\\\Book\\:\\:\\$table is not covariant with PHPDoc type string of overridden property WPMoo\\\\Database\\\\Model\\:\\:\\$table\\.$#"
+			count: 1
+			path: src/Models/Book.php
+
