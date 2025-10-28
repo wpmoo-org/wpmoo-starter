@@ -11,7 +11,7 @@ namespace WPMooStarter\Taxonomies;
 use WPMoo\Taxonomy\Taxonomy;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**

@@ -11,7 +11,7 @@ namespace WPMooStarter\Admin;
 use WPMooStarter\Helpers\FakeData;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**
@@ -69,6 +69,7 @@ class FakeDataPage {
 
 			$headline = esc_html__( '✨ Success!', 'wpmoo-starter' );
 			$body     = sprintf(
+				// translators: 1: number of genres created, 2: number of events created.
 				__( 'Generated %1$d genres and %2$d events.', 'wpmoo-starter' ),
 				$genres,
 				$events
@@ -85,6 +86,7 @@ class FakeDataPage {
 
 			$headline = esc_html__( '🗑️ Deleted!', 'wpmoo-starter' );
 			$body     = sprintf(
+				// translators: 1: number of events deleted, 2: number of genres deleted.
 				__( 'Removed %1$d events and %2$d genres.', 'wpmoo-starter' ),
 				$events,
 				$genres
@@ -111,7 +113,12 @@ class FakeDataPage {
 
 		// Get existing counts.
 		$event_count = wp_count_posts( 'event' );
-		$genre_count = wp_count_terms( [ 'taxonomy' => 'genre', 'hide_empty' => false ] );
+		$genre_count = wp_count_terms(
+			[
+				'taxonomy' => 'genre',
+				'hide_empty' => false,
+			]
+		);
 
 		?>
 		<div class="wrap">
@@ -123,11 +130,13 @@ class FakeDataPage {
 					<tbody>
 						<tr>
 							<td><strong><?php esc_html_e( 'Events:', 'wpmoo-starter' ); ?></strong></td>
-							<td><?php printf( esc_html__( '%d published', 'wpmoo-starter' ), (int) $event_count->publish ); ?></td>
+								<?php // translators: %d: number of published events. ?>
+								<td><?php printf( esc_html__( '%d published', 'wpmoo-starter' ), (int) $event_count->publish ); ?></td>
 						</tr>
 						<tr>
 							<td><strong><?php esc_html_e( 'Genres:', 'wpmoo-starter' ); ?></strong></td>
-							<td><?php printf( esc_html__( '%d terms', 'wpmoo-starter' ), (int) $genre_count ); ?></td>
+								<?php // translators: %d: number of terms in the Genre taxonomy. ?>
+								<td><?php printf( esc_html__( '%d terms', 'wpmoo-starter' ), (int) $genre_count ); ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -139,14 +148,40 @@ class FakeDataPage {
 				
 				<h3><?php esc_html_e( 'What will be created:', 'wpmoo-starter' ); ?></h3>
 				<ul style="list-style: disc; margin-left: 20px;">
-					<li><?php echo wp_kses_post( sprintf( __( '<strong>%s Genre terms</strong> with:', 'wpmoo-starter' ), number_format_i18n( 8 ) ) ); ?>
+					<?php // translators: %s: number of genre terms to be created. ?>
+					<li>
+						<?php
+							echo wp_kses_post(
+								sprintf(
+									// translators: %s: number of genre terms to be created.
+									__( '<strong>%s Genre terms</strong> with:', 'wpmoo-starter' ),
+									number_format_i18n( 8 )
+								)
+							);
+						?>
 						<ul style="list-style: circle; margin-left: 20px;">
 							<li><?php esc_html_e( 'Featured status (for testing sortable columns)', 'wpmoo-starter' ); ?></li>
 							<li><?php esc_html_e( 'Custom icons (dashicons)', 'wpmoo-starter' ); ?></li>
-							<li><?php esc_html_e( 'Music Concert, Tech Conference, Art Exhibition, Sports Event, Food Festival, Theater, Workshop, Networking', 'wpmoo-starter' ); ?></li>
+							<?php
+							$genres_list = __(
+								'Music Concert, Tech Conference, Art Exhibition, Sports Event, Food Festival, Theater, Workshop, Networking',
+								'wpmoo-starter'
+							);
+							?>
+							<li><?php echo esc_html( $genres_list ); ?></li>
 						</ul>
 					</li>
-					<li><?php echo wp_kses_post( sprintf( __( '<strong>%s Event posts</strong> with:', 'wpmoo-starter' ), number_format_i18n( 15 ) ) ); ?>
+					<?php // translators: %s: number of event posts to be created. ?>
+					<li>
+						<?php
+							echo wp_kses_post(
+								sprintf(
+									// translators: %s: number of event posts to be created.
+									__( '<strong>%s Event posts</strong> with:', 'wpmoo-starter' ),
+									number_format_i18n( 15 )
+								)
+							);
+						?>
 						<ul style="list-style: circle; margin-left: 20px;">
 							<li><?php esc_html_e( 'Full content and descriptions', 'wpmoo-starter' ); ?></li>
 							<li><?php esc_html_e( 'Event dates (upcoming events)', 'wpmoo-starter' ); ?></li>
@@ -171,10 +206,19 @@ class FakeDataPage {
 
 			<div class="card" style="max-width: 800px; border-left: 4px solid #dc3232;">
 				<h2 style="color: #dc3232;"><?php esc_html_e( '🗑️ Delete All Data', 'wpmoo-starter' ); ?></h2>
-				<p><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> This will permanently delete all Events and Genres!', 'wpmoo-starter' ), esc_html__( 'Warning:', 'wpmoo-starter' ) ) ); ?></p>
+				<?php // translators: %s: the word "Warning:" emphasized before the sentence. ?>
+				<?php
+					$delete_warning = sprintf(
+						// translators: %s: the word "Warning:" emphasized before the sentence.
+						__( '<strong>%s</strong> This will permanently delete all Events and Genres!', 'wpmoo-starter' ),
+						esc_html__( 'Warning:', 'wpmoo-starter' )
+					);
+				?>
+				<p><?php echo wp_kses_post( $delete_warning ); ?></p>
 
+				<?php $confirm_text = __( 'Are you sure you want to delete ALL Events and Genres? This cannot be undone!', 'wpmoo-starter' ); ?>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" 
-					  onsubmit="return confirm('<?php echo esc_js( __( 'Are you sure you want to delete ALL Events and Genres? This cannot be undone!', 'wpmoo-starter' ) ); ?>');">
+						onsubmit="return confirm('<?php echo esc_js( $confirm_text ); ?>');">
 					<?php wp_nonce_field( 'delete_fake_data', 'fake_data_nonce' ); ?>
 					<input type="hidden" name="action" value="delete_fake_data">
 					<p>
@@ -188,12 +232,52 @@ class FakeDataPage {
 			<div class="card" style="max-width: 800px; background: #f0f6fc;">
 				<h2><?php esc_html_e( '💡 Quick Tips', 'wpmoo-starter' ); ?></h2>
 				<ul style="list-style: disc; margin-left: 20px;">
-					<li><?php echo wp_kses_post( sprintf( __( 'Visit <strong>%s</strong> to see the generated events', 'wpmoo-starter' ), esc_html__( 'Events > All Events', 'wpmoo-starter' ) ) ); ?></li>
-					<li><?php echo wp_kses_post( sprintf( __( 'Visit <strong>%s</strong> to see custom columns in action:', 'wpmoo-starter' ), esc_html__( 'Events > Genres', 'wpmoo-starter' ) ) ); ?>
+					<?php // translators: %s: admin menu path to the list of generated events. ?>
+				<?php
+				$see_events = sprintf(
+					// translators: %s: admin menu path to the list of generated events.
+					__( 'Visit <strong>%s</strong> to see the generated events', 'wpmoo-starter' ),
+					esc_html__( 'Events > All Events', 'wpmoo-starter' )
+				);
+				?>
+					<li><?php echo wp_kses_post( $see_events ); ?></li>
+					<?php // translators: %s: admin menu path to the terms screen showing custom columns. ?>
+				<?php
+				$see_genres = sprintf(
+					// translators: %s: admin menu path to the terms screen showing custom columns.
+					__( 'Visit <strong>%s</strong> to see custom columns in action:', 'wpmoo-starter' ),
+					esc_html__( 'Events > Genres', 'wpmoo-starter' )
+				);
+				?>
+					<li><?php echo wp_kses_post( $see_genres ); ?>
 						<ul style="list-style: circle; margin-left: 20px;">
-							<li><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> column shows event count per genre', 'wpmoo-starter' ), esc_html__( 'Events', 'wpmoo-starter' ) ) ); ?></li>
-							<li><?php echo wp_kses_post( sprintf( __( '<strong>%s</strong> column shows featured status (★)', 'wpmoo-starter' ), esc_html__( 'Featured', 'wpmoo-starter' ) ) ); ?></li>
-							<li><?php echo wp_kses_post( sprintf( __( 'Both columns are <strong>%s</strong>!', 'wpmoo-starter' ), esc_html__( 'sortable', 'wpmoo-starter' ) ) ); ?></li>
+							<?php // translators: %s: the column label "Events". ?>
+				<?php
+				$col_events = sprintf(
+					// translators: %s: the column label "Events".
+					__( '<strong>%s</strong> column shows event count per genre', 'wpmoo-starter' ),
+					esc_html__( 'Events', 'wpmoo-starter' )
+				);
+				?>
+							<li><?php echo wp_kses_post( $col_events ); ?></li>
+							<?php // translators: %s: the column label "Featured". ?>
+				<?php
+				$col_featured = sprintf(
+					// translators: %s: the column label "Featured".
+					__( '<strong>%s</strong> column shows featured status (★)', 'wpmoo-starter' ),
+					esc_html__( 'Featured', 'wpmoo-starter' )
+				);
+				?>
+							<li><?php echo wp_kses_post( $col_featured ); ?></li>
+							<?php // translators: %s: the word "sortable". ?>
+				<?php
+				$col_sortable = sprintf(
+					// translators: %s: the word "sortable".
+					__( 'Both columns are <strong>%s</strong>!', 'wpmoo-starter' ),
+					esc_html__( 'sortable', 'wpmoo-starter' )
+				);
+				?>
+							<li><?php echo wp_kses_post( $col_sortable ); ?></li>
 						</ul>
 					</li>
 					<li><?php esc_html_e( 'Click on column headers to sort by different criteria', 'wpmoo-starter' ); ?></li>
@@ -254,7 +338,7 @@ class FakeDataPage {
 				admin_url( 'tools.php' )
 			)
 		);
-		exit;
+		return;
 	}
 
 	/**
@@ -285,6 +369,6 @@ class FakeDataPage {
 				admin_url( 'tools.php' )
 			)
 		);
-		exit;
+		return;
 	}
 }

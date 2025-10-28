@@ -41,10 +41,10 @@ class Event {
 
 		self::$registered = true;
 
-        if ( did_action( 'init' ) ) {
-            self::boot();
-            return;
-        }
+		if ( did_action( 'init' ) ) {
+			self::boot();
+			return;
+		}
 
 		add_action( 'init', array( __CLASS__, 'boot' ) );
 	}
@@ -81,9 +81,9 @@ class Event {
 			->sortable( 'capacity', array( 'event_capacity', true ) )
 			->hide( array( 'date' ) );
 
-        $event->register();
+		$event->register();
 
-        self::register_metabox();
+		self::register_metabox();
 	}
 
 	/**
@@ -92,15 +92,17 @@ class Event {
 	 * @return void
 	 */
 	public static function register_metabox(): void {
-        $metabox = Moo::panel( 'wpmoo_event_type', __( 'Event Details', 'wpmoo-starter' ) )
-            ->description( __( 'Capture event metadata shown in custom columns and templates.', 'wpmoo-starter' ) )
-            ->postType( array( 'post', 'event' ) )
-            ->context( 'normal' )
-            ->priority( 'default' );
+		$metabox = Moo::panel( 'wpmoo_event_type', __( 'Event Details', 'wpmoo-starter' ) )
+			->description( __( 'Capture event metadata shown in custom columns and templates.', 'wpmoo-starter' ) )
+			->postType( array( 'post', 'event' ) )
+			->context( 'normal' )
+			->priority( 'default' );
 
 		Moo::section( 'event_details', __( 'Details', 'wpmoo-starter' ) )
 			->metabox( $metabox )
-			->description( __( 'Key information about the event.', 'wpmoo-starter' ) )
+			->description(
+				__( 'Key information about the event.', 'wpmoo-starter' )
+			)
 			->fields(
 				Field::text( 'event_type', __( 'Event Type', 'wpmoo-starter' ) )
 					->description( __( 'Examples: conference, workshop, webinar.', 'wpmoo-starter' ) )
@@ -109,18 +111,20 @@ class Event {
 					->placeholder( __( 'Berlin, Germany', 'wpmoo-starter' ) )
 			);
 
-        Moo::section( 'event_schedule', __( 'Schedule', 'wpmoo-starter' ) )
-            ->metabox( $metabox )
-            ->description( __( 'Timing and capacity details.', 'wpmoo-starter' ) )
-            ->icon( 'dashicons-clock' )
-            ->fields(
-                Field::text( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
-                    ->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
-                Field::text( 'event_capacity', __( 'Capacity', 'wpmoo-starter' ) )
-                    ->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
-                    ->placeholder( __( '200', 'wpmoo-starter' ) )
-            );
-    }
+		Moo::section( 'event_schedule', __( 'Schedule', 'wpmoo-starter' ) )
+			->metabox( $metabox )
+			->description(
+				__( 'Timing and capacity details.', 'wpmoo-starter' )
+			)
+			->icon( 'dashicons-clock' )
+			->fields(
+				Field::text( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
+					->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
+				Field::text( 'event_capacity', __( 'Capacity', 'wpmoo-starter' ) )
+					->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
+					->placeholder( __( '200', 'wpmoo-starter' ) )
+			);
+	}
 
 	/**
 	 * Populate genre column.

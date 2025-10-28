@@ -9,7 +9,7 @@
 namespace WPMooStarter\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**
@@ -80,7 +80,8 @@ class FakeData {
 	private static $events = [
 		[
 			'title'       => 'Summer Music Festival 2025',
-			'content'     => 'Join us for an incredible summer music festival featuring top artists from around the world. Three days of non-stop entertainment with multiple stages and food vendors.',
+			'content'     => 'Join us for an incredible summer music festival featuring top artists from around the world. '
+				. 'Three days of non-stop entertainment with multiple stages and food vendors.',
 			'genre'       => 'music-concert',
 			'date'        => '+15 days',
 			'location'    => 'Central Park, New York',
@@ -89,7 +90,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'WordPress Developer Summit',
-			'content'     => 'A premier conference for WordPress developers, designers, and business owners. Learn about the latest trends, best practices, and network with industry leaders.',
+			'content'     => 'A premier conference for WordPress developers, designers, and business owners. '
+				. 'Learn about the latest trends, best practices, and network with industry leaders.',
 			'genre'       => 'tech-conference',
 			'date'        => '+30 days',
 			'location'    => 'San Francisco Convention Center',
@@ -98,7 +100,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Modern Art Gallery Opening',
-			'content'     => 'Experience the grand opening of our contemporary art gallery featuring works from emerging artists. Free admission on opening night with refreshments provided.',
+			'content'     => 'Experience the grand opening of our contemporary art gallery featuring works from emerging artists. '
+				. 'Free admission on opening night with refreshments provided.',
 			'genre'       => 'art-exhibition',
 			'date'        => '+7 days',
 			'location'    => 'Downtown Art District',
@@ -107,7 +110,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'City Marathon 2025',
-			'content'     => 'Annual city marathon open to runners of all levels. 10K, Half Marathon, and Full Marathon options available. Register early for discounted rates.',
+			'content'     => 'Annual city marathon open to runners of all levels. 10K, Half Marathon, and Full Marathon options available. '
+				. 'Register early for discounted rates.',
 			'genre'       => 'sports-event',
 			'date'        => '+45 days',
 			'location'    => 'City Center',
@@ -116,7 +120,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'International Food & Wine Expo',
-			'content'     => 'Taste cuisines from over 50 countries, attend cooking demonstrations by celebrity chefs, and explore the finest wines from around the globe.',
+			'content'     => 'Taste cuisines from over 50 countries, attend cooking demonstrations by celebrity chefs, '
+				. 'and explore the finest wines from around the globe.',
 			'genre'       => 'food-festival',
 			'date'        => '+20 days',
 			'location'    => 'Harbor Convention Center',
@@ -125,7 +130,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Shakespeare in the Park',
-			'content'     => 'Classic outdoor theater production of Romeo and Juliet. Bring your blankets and picnic baskets for a magical evening under the stars.',
+			'content'     => 'Classic outdoor theater production of Romeo and Juliet. '
+				. 'Bring your blankets and picnic baskets for a magical evening under the stars.',
 			'genre'       => 'theater',
 			'date'        => '+10 days',
 			'location'    => 'Riverside Park Amphitheater',
@@ -134,7 +140,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Digital Marketing Workshop',
-			'content'     => 'Hands-on workshop covering SEO, social media marketing, content strategy, and analytics. Perfect for beginners and intermediate marketers.',
+			'content'     => 'Hands-on workshop covering SEO, social media marketing, content strategy, and analytics. '
+				. 'Perfect for beginners and intermediate marketers.',
 			'genre'       => 'workshop',
 			'date'        => '+5 days',
 			'location'    => 'Tech Hub Co-working Space',
@@ -143,7 +150,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Startup Founders Meetup',
-			'content'     => 'Monthly networking event for startup founders, entrepreneurs, and investors. Share experiences, find co-founders, and make valuable connections.',
+			'content'     => 'Monthly networking event for startup founders, entrepreneurs, and investors. '
+				. 'Share experiences, find co-founders, and make valuable connections.',
 			'genre'       => 'networking',
 			'date'        => '+3 days',
 			'location'    => 'Innovation District',
@@ -152,7 +160,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Jazz Night Under the Stars',
-			'content'     => 'Intimate jazz evening featuring local and international jazz musicians. Enjoy smooth tunes while dining at our outdoor venue.',
+			'content'     => 'Intimate jazz evening featuring local and international jazz musicians. '
+				. 'Enjoy smooth tunes while dining at our outdoor venue.',
 			'genre'       => 'music-concert',
 			'date'        => '+12 days',
 			'location'    => 'Rooftop Garden',
@@ -161,7 +170,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'AI & Machine Learning Conference',
-			'content'     => 'Cutting-edge conference exploring the future of artificial intelligence and machine learning. Featuring keynotes from tech giants and hands-on labs.',
+			'content'     => 'Cutting-edge conference exploring the future of artificial intelligence and machine learning. '
+				. 'Featuring keynotes from tech giants and hands-on labs.',
 			'genre'       => 'tech-conference',
 			'date'        => '+60 days',
 			'location'    => 'Silicon Valley Tech Center',
@@ -170,7 +180,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Local Artists Showcase',
-			'content'     => 'Monthly showcase celebrating local talent across various art forms including painting, sculpture, photography, and digital art.',
+			'content'     => 'Monthly showcase celebrating local talent across various art forms including painting, '
+				. 'sculpture, photography, and digital art.',
 			'genre'       => 'art-exhibition',
 			'date'        => '+8 days',
 			'location'    => 'Community Arts Center',
@@ -179,7 +190,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Beach Volleyball Tournament',
-			'content'     => 'Summer beach volleyball tournament with prizes for winners. Amateur and professional divisions available. Spectators welcome!',
+			'content'     => 'Summer beach volleyball tournament with prizes for winners. '
+				. 'Amateur and professional divisions available. Spectators welcome!',
 			'genre'       => 'sports-event',
 			'date'        => '+25 days',
 			'location'    => 'Sunset Beach',
@@ -188,7 +200,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Street Food Festival',
-			'content'     => 'Weekend-long street food festival featuring the best food trucks and street vendors in the city. Live music and family-friendly activities.',
+			'content'     => 'Weekend-long street food festival featuring the best food trucks and street vendors in the city. '
+				. 'Live music and family-friendly activities.',
 			'genre'       => 'food-festival',
 			'date'        => '+18 days',
 			'location'    => 'Main Street Plaza',
@@ -197,7 +210,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Broadway Musical Night',
-			'content'     => 'Experience the magic of Broadway with performances from award-winning musicals. Special guest appearances and interactive Q&A session.',
+			'content'     => 'Experience the magic of Broadway with performances from award-winning musicals. '
+				. 'Special guest appearances and interactive Q&A session.',
 			'genre'       => 'theater',
 			'date'        => '+35 days',
 			'location'    => 'Grand Theater',
@@ -206,7 +220,8 @@ class FakeData {
 		],
 		[
 			'title'       => 'Photography Masterclass',
-			'content'     => 'Full-day photography workshop covering composition, lighting, post-processing, and portfolio building. Bring your camera!',
+			'content'     => 'Full-day photography workshop covering composition, lighting, post-processing, and portfolio building. '
+				. 'Bring your camera!',
 			'genre'       => 'workshop',
 			'date'        => '+14 days',
 			'location'    => 'Photography Studio Downtown',
@@ -279,7 +294,25 @@ class FakeData {
 
 		foreach ( self::$events as $event_data ) {
 			// Check if event already exists.
-			$existing = get_page_by_title( $event_data['title'], OBJECT, 'event' );
+			$existing = null;
+			$query    = new \WP_Query(
+				[
+					'post_type'      => 'event',
+					'posts_per_page' => 10,
+					's'              => $event_data['title'],
+					'fields'         => 'ids',
+				]
+			);
+
+			if ( $query->have_posts() ) {
+				foreach ( $query->posts as $maybe_id ) {
+					if ( get_the_title( $maybe_id ) === $event_data['title'] ) {
+						$existing = get_post( $maybe_id );
+						break;
+					}
+				}
+				wp_reset_postdata();
+			}
 
 			if ( $existing ) {
 				$post_id = $existing->ID;
@@ -310,7 +343,7 @@ class FakeData {
 			update_post_meta( $post_id, 'event_price', $event_data['price'] );
 
 			// Generate random registration count (0-80% capacity).
-			$registered = rand( 0, (int) ( $event_data['capacity'] * 0.8 ) );
+			$registered = wp_rand( 0, (int) ( $event_data['capacity'] * 0.8 ) );
 			update_post_meta( $post_id, 'event_registered', $registered );
 
 			$created[] = $post_id;
@@ -350,7 +383,7 @@ class FakeData {
 		$deleted = 0;
 		foreach ( $events as $event_id ) {
 			if ( wp_delete_post( $event_id, true ) ) {
-				$deleted++;
+				++$deleted;
 			}
 		}
 
@@ -374,7 +407,7 @@ class FakeData {
 		$deleted = 0;
 		foreach ( $genres as $term_id ) {
 			if ( wp_delete_term( $term_id, 'genre' ) ) {
-				$deleted++;
+				++$deleted;
 			}
 		}
 

@@ -11,7 +11,7 @@ use WPMoo\Moo;
 use WPMoo\Options\Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**
@@ -31,11 +31,14 @@ class Accordion {
 			->fields(
 				Field::accordion( 'content_blocks', __( 'Homepage Blocks', 'wpmoo-starter' ) )
 					->description( __( 'Each accordion panel renders its own collection of fields.', 'wpmoo-starter' ) )
-					->set( 'sections', array(
-						self::hero_panel(),
-						self::feature_panel(),
-						self::faq_panel(),
-					) )
+					->set(
+						'sections',
+						array(
+							self::hero_panel(),
+							self::feature_panel(),
+							self::faq_panel(),
+						)
+					)
 			);
 	}
 
