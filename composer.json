@@ -1,67 +1,80 @@
 {
-    "name": "wpmoo/wpmoo-starter",
-    "description": "Starter plugin demonstrating WPMoo Framework usage.",
-    "license": "GPL-3.0-or-later",
-    "homepage": "https://wpmoo.org",
-    "authors": [
-        {
-            "name": "WPMoo",
-            "email": "hello@wpmoo.org",
-            "homepage": "https://wpmoo.org/"
-        }
-    ],
-    "keywords": [
-        "wordpress",
-        "wp-cli",
-        "plugin",
-        "starter",
-        "php",
-        "php7.4",
-        "php8.0",
-        "php8.1",
-        "php8.2",
-        "php8.3",
-        "oop",
-        "object-oriented"
-    ],
-    "type": "wordpress-plugin",
-    "require": {
-        "php": ">=7.4",
-        "wpmoo/wpmoo": "dev-dev"
-    },
-    "repositories": [
-        { "type": "path", "url": "../wpmoo", "options": { "symlink": true } },
-        { "type": "path", "url": "../wpmoo-cli", "options": { "symlink": true } }
-    ],
-    "autoload": {
-        "psr-4": {
-            "WPMooStarter\\": "src/"
-        }
-    },
-    "require-dev": {
-        "wpmoo/wpmoo-coding-standards": "dev-main",
-        "wpmoo/wpmoo-cli": "dev-dev",
-        "phpstan/phpstan": "^1.11",
-        "szepeviktor/phpstan-wordpress": "^1.3"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "moo": "php vendor/bin/moo",
-        "check:validate": "composer validate",
-        "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
-        "phpcs": "vendor/bin/phpcs -n --standard=phpcs.xml",
-        "phpstan": "vendor/bin/phpstan analyse --no-progress --memory-limit=512M",
-        "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
-        "check": [
-            "@check:validate",
-            "@lint:php",
-            "@phpcs"
-        ]
+  "name": "wpmoo/wpmoo-starter",
+  "description": "Starter plugin demonstrating WPMoo Framework usage.",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://wpmoo.org",
+  "authors": [
+    {
+      "name": "WPMoo",
+      "email": "hello@wpmoo.org",
+      "homepage": "https://wpmoo.org/"
     }
+  ],
+  "keywords": [
+    "wordpress",
+    "wp-cli",
+    "plugin",
+    "starter",
+    "php",
+    "php7.4",
+    "php8.0",
+    "php8.1",
+    "php8.2",
+    "php8.3",
+    "oop",
+    "object-oriented"
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.4",
+    "wpmoo/wpmoo": "dev-dev"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../wpmoo",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "../wpmoo-cli",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WPMooStarter\\": "src/"
+    }
+  },
+  "require-dev": {
+    "wpmoo/wpmoo-coding-standards": "dev-main",
+    "wpmoo/wpmoo-cli": "dev-dev",
+    "phpstan/phpstan": "^1.11",
+    "szepeviktor/phpstan-wordpress": "^1.3"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "moo": "php vendor/bin/moo",
+    "check:validate": "composer validate",
+    "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
+    "phpcs": "vendor/bin/phpcs -n --standard=phpcs.xml",
+    "phpcbf": "vendor/bin/phpcbf",
+    "phpstan": "vendor/bin/phpstan analyse --no-progress --memory-limit=512M",
+    "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
+    "check": [
+      "@check:validate",
+      "@lint:php",
+      "@phpcs"
+    ]
+  }
 }
