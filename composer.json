@@ -27,7 +27,7 @@
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.4",
-    "wpmoo/wpmoo": "dev-dev"
+    "wpmoo/wpmoo": "dev-main || dev-dev || ^0.4"
   },
   "repositories": [
     {
@@ -52,7 +52,7 @@
   },
   "require-dev": {
     "wpmoo/wpmoo-coding-standards": "dev-main",
-    "wpmoo/wpmoo-cli": "dev-dev",
+    "wpmoo/wpmoo-cli": "dev-main || dev-dev",
     "phpstan/phpstan": "^1.11",
     "szepeviktor/phpstan-wordpress": "^1.3"
   },
