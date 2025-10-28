@@ -53,15 +53,6 @@
     "prefer-stable": true,
     "scripts": {
         "moo": "php vendor/bin/moo",
-        "sync-moo": [
-            "@php -r \"if (!file_exists('vendor/wpmoo/wpmoo-cli/bin/moo')) { exit(0); } if (!file_exists('moo')) { copy('vendor/wpmoo/wpmoo-cli/bin/moo', 'moo'); if (function_exists('chmod')) { @chmod('moo', 0755); } }\""
-        ],
-        "post-install-cmd": [
-            "@sync-moo"
-        ],
-        "post-update-cmd": [
-            "@sync-moo"
-        ],
         "check:validate": "composer validate",
         "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
         "phpcs": "vendor/bin/phpcs -n --standard=phpcs.xml",
