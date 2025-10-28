@@ -16,12 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Fake data generator for testing.
  */
 class FakeData {
-    /**
-     * Genre data with icons and featured status.
-     *
-     * @var array<int, array<string, mixed>>
-     */
-    private static $genres = [
+	/**
+	 * Genre data with icons and featured status.
+	 *
+	 * @var array<int, array<string, mixed>>
+	 */
+	private static $genres = [
 		[
 			'name'     => 'Music Concert',
 			'slug'     => 'music-concert',
@@ -72,12 +72,12 @@ class FakeData {
 		],
 	];
 
-    /**
-     * Event titles and descriptions.
-     *
-     * @var array<int, array<string, mixed>>
-     */
-    private static $events = [
+	/**
+	 * Event titles and descriptions.
+	 *
+	 * @var array<int, array<string, mixed>>
+	 */
+	private static $events = [
 		[
 			'title'       => 'Summer Music Festival 2025',
 			'content'     => 'Join us for an incredible summer music festival featuring top artists from around the world. '
@@ -230,12 +230,12 @@ class FakeData {
 		],
 	];
 
-    /**
-     * Generate all fake data.
-     *
-     * @return array<string, array<int, int>> Results summary (created IDs by group).
-     */
-    public static function generate_all(): array {
+	/**
+	 * Generate all fake data.
+	 *
+	 * @return array<string, array<int, int>> Results summary (created IDs by group).
+	 */
+	public static function generate_all(): array {
 		$results = [
 			'genres' => self::generate_genres(),
 			'events' => self::generate_events(),
@@ -244,12 +244,12 @@ class FakeData {
 		return $results;
 	}
 
-    /**
-     * Generate genre terms.
-     *
-     * @return array<int, int> Created genre IDs.
-     */
-    public static function generate_genres(): array {
+	/**
+	 * Generate genre terms.
+	 *
+	 * @return array<int, int> Created genre IDs.
+	 */
+	public static function generate_genres(): array {
 		$created = [];
 
 		foreach ( self::$genres as $genre_data ) {
@@ -284,12 +284,12 @@ class FakeData {
 		return $created;
 	}
 
-    /**
-     * Generate event posts.
-     *
-     * @return array<int, int> Created post IDs.
-     */
-    public static function generate_events(): array {
+	/**
+	 * Generate event posts.
+	 *
+	 * @return array<int, int> Created post IDs.
+	 */
+	public static function generate_events(): array {
 		$created = [];
 
 		foreach ( self::$events as $event_data ) {
