@@ -1,0 +1,17 @@
+/**
+ * WPMoo Starter – SCSS entry
+ *
+ * Uses framework tokens (variables/mixins) from vendor/wpmoo/wpmoo/assets/scss
+ * and adds plugin‑specific styles on top of the core admin UI.
+ */
+
+// Import framework tokens without relative paths (loadPaths configured in gulpfile)
+@use "variables" as v;
+@use "mixins" as m;
+
+/* Example: tweak small UI bits; replace with your plugin styles */
+.wpmoo-starter-admin-note {
+  font-size: 13px;
+  color: v.wpmoo-color(text);
+  margin-top: 8px;
+}

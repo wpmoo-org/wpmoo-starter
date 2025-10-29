@@ -1,0 +1,18 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 6
+    phpVersion: 70400
+    paths:
+        - src
+    excludePaths:
+        - vendor
+        - tests
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        -
+            message: '#Call to an undefined static method WPMoo\\Options\\Field::#'
+            path: src

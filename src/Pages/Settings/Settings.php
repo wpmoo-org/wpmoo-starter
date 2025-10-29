@@ -14,7 +14,7 @@ use WPMooStarter\Pages\Settings\Sections\Text;
 use WPMooStarter\Pages\Settings\Sections\Textarea;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 /**

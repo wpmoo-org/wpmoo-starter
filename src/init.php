@@ -16,12 +16,12 @@ use WPMooStarter\PostTypes\Event;
 use WPMooStarter\Taxonomies\Genre;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	return;
 }
 
 if ( ! function_exists( 'is_admin' ) || is_admin() ) {
-    SettingsPage::register();
-    FakeDataPage::init();
+	SettingsPage::register();
+	FakeDataPage::init();
 }
 
 Event::register();
