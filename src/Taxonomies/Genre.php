@@ -81,29 +81,15 @@ class Genre {
 	 * @param int    $term_id  Term ID.
 	 * @return string
 	 */
-	public static function populate_event_count( $content, $column, $term_id ) {
-		// Get actual count for this genre.
-		$query = new \WP_Query(
-			array(
-				'post_type'      => 'event',
-				'posts_per_page' => -1,
-				'fields'         => 'ids',
-				'tax_query'      => array(
-					array(
-						'taxonomy' => 'genre',
-						'terms'    => $term_id,
-					),
-				),
-			)
-		);
+    public static function populate_event_count( $content, $column, $term_id ) {
+        // Fast path: use term_taxonomy count (taxonomy is attached only to 'event').
+        $term  = get_term( (int) $term_id, 'genre' );
+        $count = ( $term && ! is_wp_error( $term ) ) ? (int) $term->count : 0;
 
-		$count = $query->found_posts;
-		wp_reset_postdata();
+        $label = _n( 'event', 'events', $count, 'wpmoo-starter' );
 
-		$label = _n( 'event', 'events', $count, 'wpmoo-starter' );
-
-		return '<strong>' . intval( $count ) . '</strong> ' . esc_html( $label );
-	}
+        return '<strong>' . intval( $count ) . '</strong> ' . esc_html( $label );
+    }
 
 	/**
 	 * Populate featured column.
