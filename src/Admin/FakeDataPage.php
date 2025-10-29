@@ -52,23 +52,23 @@ class FakeDataPage {
 	 *
 	 * @return void
 	 */
-    public static function show_notices(): void {
-        if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'wpmoo-fake-data' ) {
-            return;
-        }
+	public static function show_notices(): void {
+		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== 'wpmoo-fake-data' ) {
+			return;
+		}
 
-        // Verify a nonce to ensure the notice parameters come from our actions.
-        if ( ! isset( $_GET['notice_nonce'] ) ) {
-            return;
-        }
-        $notice_nonce = sanitize_text_field( wp_unslash( $_GET['notice_nonce'] ) );
-        if ( ! wp_verify_nonce( $notice_nonce, 'wpmoo_fake_data_notice' ) ) {
-            return;
-        }
+		// Verify a nonce to ensure the notice parameters come from our actions.
+		if ( ! isset( $_GET['notice_nonce'] ) ) {
+			return;
+		}
+		$notice_nonce = sanitize_text_field( wp_unslash( $_GET['notice_nonce'] ) );
+		if ( ! wp_verify_nonce( $notice_nonce, 'wpmoo_fake_data_notice' ) ) {
+			return;
+		}
 
-        if ( ! isset( $_GET['message'] ) ) {
-            return;
-        }
+		if ( ! isset( $_GET['message'] ) ) {
+			return;
+		}
 
 		$message = sanitize_text_field( wp_unslash( $_GET['message'] ) );
 
@@ -76,8 +76,8 @@ class FakeDataPage {
 			$genres = isset( $_GET['genres'] ) ? (int) $_GET['genres'] : 0;
 			$events = isset( $_GET['events'] ) ? (int) $_GET['events'] : 0;
 
-            $headline = esc_html__( '✨ Success!', 'wpmoo-starter' );
-            $body     = sprintf(
+			$headline = esc_html__( '✨ Success!', 'wpmoo-starter' );
+			$body     = sprintf(
 				// translators: 1: number of genres created, 2: number of events created.
 				__( 'Generated %1$d genres and %2$d events.', 'wpmoo-starter' ),
 				$genres,
@@ -89,9 +89,9 @@ class FakeDataPage {
 				esc_html( $headline ),
 				esc_html( $body )
 			);
-        } elseif ( $message === 'deleted' ) {
-            $genres = isset( $_GET['genres'] ) ? (int) $_GET['genres'] : 0;
-            $events = isset( $_GET['events'] ) ? (int) $_GET['events'] : 0;
+		} elseif ( $message === 'deleted' ) {
+			$genres = isset( $_GET['genres'] ) ? (int) $_GET['genres'] : 0;
+			$events = isset( $_GET['events'] ) ? (int) $_GET['events'] : 0;
 
 			$headline = esc_html__( '🗑️ Deleted!', 'wpmoo-starter' );
 			$body     = sprintf(
@@ -324,7 +324,7 @@ class FakeDataPage {
 	 *
 	 * @return void
 	 */
-    public static function handle_generate(): void {
+	public static function handle_generate(): void {
 		// Check permissions and nonce.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions.', 'wpmoo-starter' ) );
@@ -336,27 +336,27 @@ class FakeDataPage {
 		$results = FakeData::generate_all();
 
 		// Redirect with success message.
-        wp_safe_redirect(
-            add_query_arg(
-                [
-                    'page'    => 'wpmoo-fake-data',
-                    'message' => 'generated',
-                    'genres'  => count( $results['genres'] ),
-                    'events'  => count( $results['events'] ),
-                    'notice_nonce' => wp_create_nonce( 'wpmoo_fake_data_notice' ),
-                ],
-                admin_url( 'tools.php' )
-            )
-        );
-        return;
-    }
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'page'    => 'wpmoo-fake-data',
+					'message' => 'generated',
+					'genres'  => count( $results['genres'] ),
+					'events'  => count( $results['events'] ),
+					'notice_nonce' => wp_create_nonce( 'wpmoo_fake_data_notice' ),
+				],
+				admin_url( 'tools.php' )
+			)
+		);
+		return;
+	}
 
 	/**
 	 * Handle delete action.
 	 *
 	 * @return void
 	 */
-    public static function handle_delete(): void {
+	public static function handle_delete(): void {
 		// Check permissions and nonce.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions.', 'wpmoo-starter' ) );
@@ -368,18 +368,18 @@ class FakeDataPage {
 		$results = FakeData::delete_all();
 
 		// Redirect with success message.
-        wp_safe_redirect(
-            add_query_arg(
-                [
-                    'page'    => 'wpmoo-fake-data',
-                    'message' => 'deleted',
-                    'genres'  => $results['genres'],
-                    'events'  => $results['events'],
-                    'notice_nonce' => wp_create_nonce( 'wpmoo_fake_data_notice' ),
-                ],
-                admin_url( 'tools.php' )
-            )
-        );
-        return;
-    }
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'page'    => 'wpmoo-fake-data',
+					'message' => 'deleted',
+					'genres'  => $results['genres'],
+					'events'  => $results['events'],
+					'notice_nonce' => wp_create_nonce( 'wpmoo_fake_data_notice' ),
+				],
+				admin_url( 'tools.php' )
+			)
+		);
+		return;
+	}
 }
