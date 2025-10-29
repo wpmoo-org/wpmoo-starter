@@ -4,6 +4,8 @@
  * Description: Starter plugin showcasing WPMoo Framework capabilities.
  * Version: 0.1.0
  * Author: You
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: wpmoo-starter
  */
 
