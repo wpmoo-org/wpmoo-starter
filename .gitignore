@@ -33,3 +33,6 @@ npm-debug.log
 assets/css/
 # PHPUnit cache
 .phpunit.result.cache
+
+# Local env (do not commit)
+.env.local
