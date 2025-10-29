@@ -45,6 +45,12 @@ if [ "${SKIP_PHPSTAN:-0}" != "1" ] && [ -n "${PHP_FILES}" ] && [ -x vendor/bin/p
   vendor/bin/phpstan analyse --no-progress --memory-limit=512M ${PHP_FILES} || exit 1
 fi
 
+# Optional local WordPress smoke test (requires .env.local)
+if [ "${LOCAL_WP_TEST:-1}" = "1" ] && [ -f ".env.local" ]; then
+  echo "→ Running local WordPress smoke test (scripts/local-wp-test.sh)"
+  bash scripts/local-wp-test.sh || exit 1
+fi
+
 if [ "${SKIP_TESTS:-0}" != "1" ] && [ -x vendor/bin/phpunit ] \
    && { [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; }; then
   echo "→ Running PHPUnit"
