@@ -43,8 +43,23 @@
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "preferred-install": {
+      "source": "source"
     }
   },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../wpmoo-cli",
+      "options": { "symlink": true }
+    },
+    {
+      "type": "path",
+      "url": "../wpmoo",
+      "options": { "symlink": true }
+    }
+  ],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
