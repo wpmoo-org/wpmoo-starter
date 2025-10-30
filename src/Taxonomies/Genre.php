@@ -3,7 +3,7 @@
  * Example Genre taxonomy registered with WPMoo builder.
  *
  * @package WPMooStarter\Taxonomies
- * @since 0.2.0
+ * @since 0.1.0
  */
 
 namespace WPMooStarter\Taxonomies;

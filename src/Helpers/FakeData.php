@@ -3,7 +3,7 @@
  * Generate fake data for Events and Genres.
  *
  * @package WPMooStarter\Helpers
- * @since 0.2.0
+ * @since 0.1.0
  */
 
 namespace WPMooStarter\Helpers;

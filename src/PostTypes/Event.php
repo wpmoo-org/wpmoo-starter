@@ -3,7 +3,7 @@
  * Example Event post type registered with WPMoo PostType builder.
  *
  * @package WPMooStarter\PostTypes
- * @since 0.2.0
+ * @since 0.1.0
  */
 
 // phpcs:disable WordPress.Files.FileName
