@@ -27,7 +27,7 @@
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.4",
-    "wpmoo/wpmoo": "dev-dev"
+    "wpmoo/wpmoo": "dev-main"
   },
   "autoload": {
     "psr-4": {
@@ -36,7 +36,7 @@
   },
   "require-dev": {
     "wpmoo/wpmoo-coding-standards": "dev-main",
-    "wpmoo/wpmoo-cli": "dev-dev",
+    "wpmoo/wpmoo-cli": "dev-main",
     "phpstan/phpstan": "^1.11",
     "szepeviktor/phpstan-wordpress": "^1.3"
   },
