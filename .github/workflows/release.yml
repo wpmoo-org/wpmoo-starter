@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Lint/Analyze
+        run: |
+          if composer run -q phpcs 2>/dev/null; then composer phpcs; else echo "No phpcs"; fi
+          if composer run -q phpstan 2>/dev/null; then composer phpstan; else echo "No phpstan"; fi
+
+      - name: Build distributable zip
+        run: |
+          if composer run -q moo 2>/dev/null; then
+            composer moo -- dist || php vendor/bin/moo dist
+          else
+            echo "moo script not found; skipping dist.";
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-dist
+          path: |
+            dist/*.zip
+          if-no-files-found: warn
+
+      - name: Create GitHub release with asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/*.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
