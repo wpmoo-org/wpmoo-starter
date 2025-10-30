@@ -11,7 +11,7 @@
 namespace WPMooStarter\PostTypes;
 
 use WPMoo\Moo;
-use WPMoo\Fields\FieldBuilder as Field;
+use WPMoo\Fields\Field;
 use WPMoo\PostType\PostType;
 
 if ( ! defined( 'ABSPATH' ) ) {

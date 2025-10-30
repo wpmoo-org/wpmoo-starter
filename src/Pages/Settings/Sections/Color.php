@@ -8,7 +8,7 @@
 namespace WPMooStarter\Pages\Settings\Sections;
 
 use WPMoo\Moo;
-use WPMoo\Fields\FieldBuilder as Field;
+use WPMoo\Fields\Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
