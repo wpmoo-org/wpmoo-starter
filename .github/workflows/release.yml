@@ -51,7 +51,7 @@ jobs:
           fi
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: plugin-dist
           path: |
@@ -59,7 +59,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Create GitHub release with asset
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             dist/*.zip
