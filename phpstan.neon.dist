@@ -10,6 +10,8 @@ parameters:
     excludePaths:
         - vendor
         - tests
+    stubFiles:
+        - phpstan-stubs/wpmoo-fields-field.stub.php
     reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
