@@ -35,8 +35,8 @@
     }
   },
   "require-dev": {
-    "wpmoo/wpmoo-coding-standards": "dev-main",
-    "wpmoo/wpmoo-cli": "dev-main",
+    "wpmoo/wpmoo-coding-standards": "dev-dev",
+    "wpmoo/wpmoo-cli": "dev-dev",
     "phpstan/phpstan": "^1.11",
     "szepeviktor/phpstan-wordpress": "^1.3"
   },
@@ -48,18 +48,7 @@
       "source": "source"
     }
   },
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../wpmoo-cli",
-      "options": { "symlink": true, "canonical": false }
-    },
-    {
-      "type": "path",
-      "url": "../wpmoo",
-      "options": { "symlink": true, "canonical": false }
-    }
-  ],
+  
   "extra": {
     "branch-alias": {
       "dev-main": "0.1.x-dev"
