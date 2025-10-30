@@ -11,7 +11,7 @@
 namespace WPMooStarter\PostTypes;
 
 use WPMoo\Moo;
-use WPMoo\Options\Field;
+use WPMoo\Fields\FieldBuilder as Field;
 use WPMoo\PostType\PostType;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -103,13 +103,15 @@ class Event {
 			->description(
 				__( 'Key information about the event.', 'wpmoo-starter' )
 			)
-			->fields(
-				Field::text( 'event_type', __( 'Event Type', 'wpmoo-starter' ) )
-					->description( __( 'Examples: conference, workshop, webinar.', 'wpmoo-starter' ) )
-					->placeholder( __( 'Conference', 'wpmoo-starter' ) ),
-				Field::text( 'event_location', __( 'Location', 'wpmoo-starter' ) )
-					->placeholder( __( 'Berlin, Germany', 'wpmoo-starter' ) )
-			);
+				->fields(
+					( new Field( 'event_type', 'text' ) )
+						->label( __( 'Event Type', 'wpmoo-starter' ) )
+						->description( __( 'Examples: conference, workshop, webinar.', 'wpmoo-starter' ) )
+						->placeholder( __( 'Conference', 'wpmoo-starter' ) ),
+					( new Field( 'event_location', 'text' ) )
+						->label( __( 'Location', 'wpmoo-starter' ) )
+						->placeholder( __( 'Berlin, Germany', 'wpmoo-starter' ) )
+				);
 
 		Moo::section( 'event_schedule', __( 'Schedule', 'wpmoo-starter' ) )
 			->metabox( $metabox )
@@ -117,13 +119,15 @@ class Event {
 				__( 'Timing and capacity details.', 'wpmoo-starter' )
 			)
 			->icon( 'dashicons-clock' )
-			->fields(
-				Field::text( 'event_date', __( 'Event Date', 'wpmoo-starter' ) )
-					->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
-				Field::text( 'event_capacity', __( 'Capacity', 'wpmoo-starter' ) )
-					->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
-					->placeholder( __( '200', 'wpmoo-starter' ) )
-			);
+				->fields(
+					( new Field( 'event_date', 'text' ) )
+						->label( __( 'Event Date', 'wpmoo-starter' ) )
+						->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
+					( new Field( 'event_capacity', 'text' ) )
+						->label( __( 'Capacity', 'wpmoo-starter' ) )
+						->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
+						->placeholder( __( '200', 'wpmoo-starter' ) )
+				);
 	}
 
 	/**

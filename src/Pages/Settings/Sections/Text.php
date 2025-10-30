@@ -8,7 +8,7 @@
 namespace WPMooStarter\Pages\Settings\Sections;
 
 use WPMoo\Moo;
-use WPMoo\Options\Field;
+use WPMoo\Fields\FieldBuilder as Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -30,8 +30,9 @@ class Text {
 				__( 'Examples showing how to configure single line inputs.', 'wpmoo-starter' )
 			)
 			->icon( 'dashicons-editor-textcolor' )
-			->fields(
-				Field::text( 'welcome_text', __( 'Basic Text', 'wpmoo-starter' ) )
+				->fields(
+					( new Field( 'welcome_text', 'text' ) )
+						->label( __( 'Basic Text', 'wpmoo-starter' ) )
 					->description(
 						__( 'A simple text input using a placeholder and default value.', 'wpmoo-starter' )
 					)
@@ -45,7 +46,8 @@ class Text {
 					->help(
 						__( 'Keep short and punchy so the tooltip stays legible.', 'wpmoo-starter' )
 					),
-				Field::text( 'text_email', __( 'Email Address', 'wpmoo-starter' ) )
+					( new Field( 'text_email', 'text' ) )
+						->label( __( 'Email Address', 'wpmoo-starter' ) )
 					->description(
 						__( 'Custom input type set to email with autocomplete helpers.', 'wpmoo-starter' )
 					)
@@ -65,7 +67,8 @@ class Text {
 						__( 'Browser validation enforces the email format automatically.', 'wpmoo-starter' )
 					)
 					->placeholder( __( 'name@example.com', 'wpmoo-starter' ) ),
-				Field::text( 'text_with_prefix', __( 'URL Slug', 'wpmoo-starter' ) )
+					( new Field( 'text_with_prefix', 'text' ) )
+						->label( __( 'URL Slug', 'wpmoo-starter' ) )
 					->description(
 						__( 'Demonstrates before/after markup around the control.', 'wpmoo-starter' )
 					)
@@ -88,7 +91,8 @@ class Text {
 						]
 					)
 					->default( __( 'starter-page', 'wpmoo-starter' ) ),
-				Field::text( 'text_password', __( 'API Token', 'wpmoo-starter' ) )
+					( new Field( 'text_password', 'text' ) )
+						->label( __( 'API Token', 'wpmoo-starter' ) )
 					->description( __( 'Use password input type to hide sensitive data.', 'wpmoo-starter' ) )
 					->attributes(
 						[
@@ -100,7 +104,8 @@ class Text {
 					->help(
 						__( 'Copy the token to a secure place before saving changes.', 'wpmoo-starter' )
 					),
-				Field::checkbox( 'books_toggle', __( 'Insert Sample Books', 'wpmoo-starter' ) )
+					( new Field( 'books_toggle', 'checkbox' ) )
+						->label( __( 'Insert Sample Books', 'wpmoo-starter' ) )
 					->description(
 						__( 'Controls whether the starter plugin seeds demo book entries on init.', 'wpmoo-starter' )
 					)
@@ -113,6 +118,6 @@ class Text {
 					->help(
 						__( 'Turn this off once you no longer need the sample content.', 'wpmoo-starter' )
 					)
-			);
+				);
 	}
 }

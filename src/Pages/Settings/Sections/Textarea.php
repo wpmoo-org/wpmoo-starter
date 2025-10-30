@@ -8,7 +8,7 @@
 namespace WPMooStarter\Pages\Settings\Sections;
 
 use WPMoo\Moo;
-use WPMoo\Options\Field;
+use WPMoo\Fields\FieldBuilder as Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -30,14 +30,16 @@ class Textarea {
 				__( 'Examples covering multi-line inputs and formatting helpers.', 'wpmoo-starter' )
 			)
 			->icon( 'dashicons-editor-paragraph' )
-			->fields(
-				Field::textarea( 'textarea_basic', __( 'Basic Textarea', 'wpmoo-starter' ) )
+				->fields(
+					( new Field( 'textarea_basic', 'textarea' ) )
+						->label( __( 'Basic Textarea', 'wpmoo-starter' ) )
 					->description( __( 'Default textarea with placeholder and rows attribute.', 'wpmoo-starter' ) )
 					->placeholder( __( 'Enter a short note…', 'wpmoo-starter' ) )
 					->attributes( [ 'rows' => 4 ] )
 					->default( __( "Line one\nLine two", 'wpmoo-starter' ) )
 					->help( __( 'Ideal for short text snippets like summaries or blurbs.', 'wpmoo-starter' ) ),
-				Field::textarea( 'textarea_code', __( 'Code Snippet', 'wpmoo-starter' ) )
+					( new Field( 'textarea_code', 'textarea' ) )
+						->label( __( 'Code Snippet', 'wpmoo-starter' ) )
 					->description(
 						__( 'Apply monospace styling via custom attributes.', 'wpmoo-starter' )
 					)
@@ -51,7 +53,8 @@ class Textarea {
 					->help(
 						__( 'Add a `.monospace` rule in your stylesheet to control the font family.', 'wpmoo-starter' )
 					),
-				Field::textarea( 'textarea_with_wrapper', __( 'Custom Wrapper', 'wpmoo-starter' ) )
+					( new Field( 'textarea_with_wrapper', 'textarea' ) )
+						->label( __( 'Custom Wrapper', 'wpmoo-starter' ) )
 					->description(
 						__( 'Shows how before/after markup can frame the textarea.', 'wpmoo-starter' )
 					)
@@ -74,6 +77,6 @@ class Textarea {
 					->help(
 						__( 'Keep the list concise; each line becomes an individual entry.', 'wpmoo-starter' )
 					)
-			);
+				);
 	}
 }

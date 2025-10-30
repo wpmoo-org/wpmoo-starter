@@ -8,7 +8,7 @@
 namespace WPMooStarter\Pages\Settings\Sections;
 
 use WPMoo\Moo;
-use WPMoo\Options\Field;
+use WPMoo\Fields\FieldBuilder as Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -30,15 +30,17 @@ class Color {
 						__( 'Example configurations for the WordPress color picker.', 'wpmoo-starter' )
 					)
 			->icon( 'dashicons-art' )
-			->fields(
-				Field::color( 'color_brand', __( 'Brand Color', 'wpmoo-starter' ) )
+				->fields(
+					( new Field( 'color_brand', 'color' ) )
+						->label( __( 'Brand Color', 'wpmoo-starter' ) )
 					->description( __( 'Default value defines your brand colour swatch.', 'wpmoo-starter' ) )
 					->after( '<p class="description">' . __( 'Applies to headers, highlights, and primary buttons.', 'wpmoo-starter' ) . '</p>' )
 					->default( '#8a00d4' )
 					->help(
 						__( 'Pick something accessible against both light and dark backgrounds.', 'wpmoo-starter' )
 					),
-				Field::color( 'color_palette', __( 'Restricted Palette', 'wpmoo-starter' ) )
+					( new Field( 'color_palette', 'color' ) )
+						->label( __( 'Restricted Palette', 'wpmoo-starter' ) )
 					->description(
 						__( 'Pass a palette via data attributes to guide selection.', 'wpmoo-starter' )
 					)
@@ -58,7 +60,8 @@ class Color {
 					->help(
 						__( 'Palette values are encoded into the input and parsed in JavaScript.', 'wpmoo-starter' )
 					),
-				Field::color( 'color_with_context', __( 'CTA Button Background', 'wpmoo-starter' ) )
+					( new Field( 'color_with_context', 'color' ) )
+						->label( __( 'CTA Button Background', 'wpmoo-starter' ) )
 					->description(
 						__( 'Example using before/after hints for context.', 'wpmoo-starter' )
 					)
@@ -71,6 +74,6 @@ class Color {
 						'</p>'
 					)
 					->default( '#2271b1' )
-			);
+				);
 	}
 }
