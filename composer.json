@@ -52,12 +52,12 @@
     {
       "type": "path",
       "url": "../wpmoo-cli",
-      "options": { "symlink": true }
+      "options": { "symlink": true, "canonical": false }
     },
     {
       "type": "path",
       "url": "../wpmoo",
-      "options": { "symlink": true }
+      "options": { "symlink": true, "canonical": false }
     }
   ],
   "extra": {

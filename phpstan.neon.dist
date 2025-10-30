@@ -11,7 +11,9 @@ parameters:
         - vendor
         - tests
     # Load Field builder magic static constructors from framework vendor path.
+    # Load Field builder magic static constructors from framework vendor path.
     stubFiles:
+        - vendor/wpmoo/wpmoo/phpstan-stubs/wpmoo-fields-field.stub.php
         - phpstan-stubs/wpmoo-fields-field.stub.php
     reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false
