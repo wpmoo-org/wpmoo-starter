@@ -31,7 +31,7 @@ class Color {
 					)
 			->icon( 'dashicons-art' )
 				->fields(
-					( new Field( 'color_brand', 'color' ) )
+                    Field::color('color_brand')
 						->label( __( 'Brand Color', 'wpmoo-starter' ) )
 					->description( __( 'Default value defines your brand colour swatch.', 'wpmoo-starter' ) )
 					->after( '<p class="description">' . __( 'Applies to headers, highlights, and primary buttons.', 'wpmoo-starter' ) . '</p>' )
@@ -39,7 +39,7 @@ class Color {
 					->help(
 						__( 'Pick something accessible against both light and dark backgrounds.', 'wpmoo-starter' )
 					),
-					( new Field( 'color_palette', 'color' ) )
+                    Field::color('color_palette')
 						->label( __( 'Restricted Palette', 'wpmoo-starter' ) )
 					->description(
 						__( 'Pass a palette via data attributes to guide selection.', 'wpmoo-starter' )
@@ -60,7 +60,7 @@ class Color {
 					->help(
 						__( 'Palette values are encoded into the input and parsed in JavaScript.', 'wpmoo-starter' )
 					),
-					( new Field( 'color_with_context', 'color' ) )
+                    Field::color('color_with_context')
 						->label( __( 'CTA Button Background', 'wpmoo-starter' ) )
 					->description(
 						__( 'Example using before/after hints for context.', 'wpmoo-starter' )

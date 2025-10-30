@@ -104,11 +104,11 @@ class Event {
 				__( 'Key information about the event.', 'wpmoo-starter' )
 			)
 				->fields(
-					( new Field( 'event_type', 'text' ) )
+                    Field::text('event_type')
 						->label( __( 'Event Type', 'wpmoo-starter' ) )
 						->description( __( 'Examples: conference, workshop, webinar.', 'wpmoo-starter' ) )
 						->placeholder( __( 'Conference', 'wpmoo-starter' ) ),
-					( new Field( 'event_location', 'text' ) )
+                    Field::text('event_location')
 						->label( __( 'Location', 'wpmoo-starter' ) )
 						->placeholder( __( 'Berlin, Germany', 'wpmoo-starter' ) )
 				);
@@ -120,10 +120,10 @@ class Event {
 			)
 			->icon( 'dashicons-clock' )
 				->fields(
-					( new Field( 'event_date', 'text' ) )
+                    Field::text('event_date')
 						->label( __( 'Event Date', 'wpmoo-starter' ) )
 						->description( __( 'Choose the start date for the event.', 'wpmoo-starter' ) ),
-					( new Field( 'event_capacity', 'text' ) )
+                    Field::text('event_capacity')
 						->label( __( 'Capacity', 'wpmoo-starter' ) )
 						->description( __( 'Total seats or registrations available.', 'wpmoo-starter' ) )
 						->placeholder( __( '200', 'wpmoo-starter' ) )
