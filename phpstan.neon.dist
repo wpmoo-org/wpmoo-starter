@@ -1,7 +1,6 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
     - phpstan-baseline.neon
-    - vendor/wpmoo/wpmoo/phpstan.neon
 
 parameters:
     level: 6
@@ -11,10 +10,8 @@ parameters:
     excludePaths:
         - vendor
         - tests
-    # Stubs are provided by the framework package via vendor/wpmoo/wpmoo/phpstan.neon
+    # Load Field builder magic static constructors from framework vendor path.
+    stubFiles:
+        - phpstan-stubs/wpmoo-fields-field.stub.php
     reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false
-    ignoreErrors:
-        -
-            message: '#Call to an undefined static method WPMoo\\Options\\Field::#'
-            path: src
