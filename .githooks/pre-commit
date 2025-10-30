@@ -35,9 +35,20 @@ if [ -n "${PHP_FILES}" ]; then
   done <<< "${PHP_FILES}"
 fi
 
-if [ -n "${PHP_FILES}" ] && [ -x vendor/bin/phpcs ] && [ -f phpcs.xml ]; then
-  echo "→ Running PHPCS"
-  vendor/bin/phpcs -n --standard=phpcs.xml ${PHP_FILES} || exit 1
+if [ -n "${PHP_FILES}" ]; then
+  if [ -x vendor/bin/phpcbf ]; then
+    echo "→ PHPCBF (auto-fix staged files)"
+    if [ -f phpcs.xml ]; then
+      vendor/bin/phpcbf --standard=phpcs.xml ${PHP_FILES} || true
+    else
+      vendor/bin/phpcbf ${PHP_FILES} || true
+    fi
+    git add ${PHP_FILES}
+  fi
+  if [ -x vendor/bin/phpcs ] && [ -f phpcs.xml ]; then
+    echo "→ Running PHPCS"
+    vendor/bin/phpcs -n --standard=phpcs.xml ${PHP_FILES} || exit 1
+  fi
 fi
 
 if [ "${SKIP_PHPSTAN:-0}" != "1" ] && [ -n "${PHP_FILES}" ] && [ -x vendor/bin/phpstan ] \
