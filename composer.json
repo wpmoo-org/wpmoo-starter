@@ -25,6 +25,7 @@
     "object-oriented"
   ],
   "type": "wordpress-plugin",
+  "version": "0.1.0",
   "require": {
     "php": ">=7.4",
     "wpmoo/wpmoo": "dev-dev"
