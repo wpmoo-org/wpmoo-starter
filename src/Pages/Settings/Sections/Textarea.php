@@ -31,14 +31,14 @@ class Textarea {
 			)
 			->icon( 'dashicons-editor-paragraph' )
 				->fields(
-                    Field::textarea('textarea_basic')
+					Field::textarea( 'textarea_basic' )
 						->label( __( 'Basic Textarea', 'wpmoo-starter' ) )
 					->description( __( 'Default textarea with placeholder and rows attribute.', 'wpmoo-starter' ) )
 					->placeholder( __( 'Enter a short note…', 'wpmoo-starter' ) )
 					->attributes( [ 'rows' => 4 ] )
 					->default( __( "Line one\nLine two", 'wpmoo-starter' ) )
 					->help( __( 'Ideal for short text snippets like summaries or blurbs.', 'wpmoo-starter' ) ),
-                    Field::textarea('textarea_code')
+					Field::textarea( 'textarea_code' )
 						->label( __( 'Code Snippet', 'wpmoo-starter' ) )
 					->description(
 						__( 'Apply monospace styling via custom attributes.', 'wpmoo-starter' )
@@ -53,7 +53,7 @@ class Textarea {
 					->help(
 						__( 'Add a `.monospace` rule in your stylesheet to control the font family.', 'wpmoo-starter' )
 					),
-                    Field::textarea('textarea_with_wrapper')
+					Field::textarea( 'textarea_with_wrapper' )
 						->label( __( 'Custom Wrapper', 'wpmoo-starter' ) )
 					->description(
 						__( 'Shows how before/after markup can frame the textarea.', 'wpmoo-starter' )
