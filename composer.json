@@ -1,7 +1,7 @@
 {
   "name": "wpmoo/wpmoo-starter",
   "description": "Starter plugin demonstrating WPMoo Framework usage.",
-  "license": "GPL-3.0-or-later",
+  "license": "GPL-2.0-or-later",
   "homepage": "https://wpmoo.org",
   "authors": [
     {
@@ -48,7 +48,6 @@
       "source": "source"
     }
   },
-  
   "extra": {
     "branch-alias": {
       "dev-main": "0.1.x-dev"
