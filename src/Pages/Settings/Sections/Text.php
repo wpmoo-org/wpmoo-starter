@@ -31,11 +31,19 @@ class Text {
 			)
 			->icon( 'dashicons-editor-textcolor' )
 				->fields(
+					Field::text('tags')
+						->label('Tags')
+						->repeatable(true)
+						->sortRepeatable(true)
+						->maxRepeatable(10)
+						->addButton('+ Add more'),
 					Field::text( 'welcome_text' )
 						->label( __( 'Basic Text', 'wpmoo-starter' ) )
-					->description(
-						__( 'A simple text input using a placeholder and default value.', 'wpmoo-starter' )
-					)
+						->description(
+							__( 'A simple text input using a placeholder and default value.', 'wpmoo-starter' )
+						)
+						->icon( 'dashicons dashicons-admin-users' )
+						->repeatable(true)
 					->before(
 						'<p class="description">' .
 						__( 'Shown on the welcome banner across the site.', 'wpmoo-starter' ) .
