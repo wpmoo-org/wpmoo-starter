@@ -27,7 +27,8 @@
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.4",
-    "wpmoo/wpmoo": "dev-dev"
+    "wpmoo/wpmoo": "dev-dev || dev-moo.ui",
+    "wpmoo/wpmoo-ui": "dev-main"
   },
   "autoload": {
     "psr-4": {
