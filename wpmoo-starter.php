@@ -13,6 +13,14 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
 
+// Load the plugin's textdomain
+add_action(
+	'init',
+	function () {
+		load_plugin_textdomain( 'wpmoo-starter', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+);
+
 \WPMoo\WordPress\Bootstrap::instance()->boot( __FILE__, 'wpmoo-starter' );
 
 require __DIR__ . '/src/init.php';

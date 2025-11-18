@@ -26,11 +26,21 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Settings {
 	/**
-	 * Register the starter settings page with tabs and fields.
+	 * Hook into WordPress actions to register the settings page.
 	 *
 	 * @return void
 	 */
 	public static function register(): void {
+		// Hook the actual registration to happen after translations are loaded
+		add_action( 'init', [ __CLASS__, 'register_page' ] );
+	}
+
+	/**
+	 * Register the starter settings page with tabs and fields.
+	 *
+	 * @return void
+	 */
+	public static function register_page(): void {
 		// Create a settings page
 		Moo::page( 'wpmoo_starter_settings', __( 'Starter Settings', 'wpmoo-starter' ) )
 			->capability( 'manage_options' )
