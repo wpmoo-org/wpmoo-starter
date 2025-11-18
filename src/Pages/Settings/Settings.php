@@ -1,67 +1,75 @@
 <?php
 /**
- * Main settings container for the starter plugin.
+ * Sample Settings Page for WPMooStarter using WPMoo Framework.
+ *
+ * This demonstrates the usage of the new WPMoo architecture for creating
+ * a settings page with tabs and fields.
  *
  * @package WPMooStarter\Pages\Settings
+ * @since 0.1.0
+ * @link https://wpmoo.org   WPMoo – WordPress Micro Object-Oriented Framework.
+ * @link https://github.com/wpmoo/wpmoo   GitHub Repository.
+ * @license https://spdx.org/licenses/GPL-2.0-or-later.html   GPL-2.0-or-later
  */
 
 namespace WPMooStarter\Pages\Settings;
 
 use WPMoo\Moo;
-use WPMooStarter\Pages\Settings\Sections\Accordion;
-use WPMooStarter\Pages\Settings\Sections\Color;
-use WPMooStarter\Pages\Settings\Sections\Text;
-use WPMooStarter\Pages\Settings\Sections\Textarea;
+use WPMoo\Field\Field;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	return;
+	wp_die( 'Direct access not allowed.' );
 }
 
 /**
- * Registers the options container and example sections.
+ * Registers the sample settings page with tabs and fields.
  */
 class Settings {
 	/**
-	 * Whether the boot routine has been scheduled.
-	 *
-	 * @var bool
-	 */
-	protected static $registered = false;
-
-	/**
-	 * Register the starter settings container and example sections.
+	 * Register the starter settings page with tabs and fields.
 	 *
 	 * @return void
 	 */
 	public static function register(): void {
-		if ( self::$registered ) {
-			return;
-		}
-
-		self::$registered = true;
-
-		if ( function_exists( 'did_action' ) && did_action( 'init' ) ) {
-			self::boot();
-			return;
-		}
-
-		add_action( 'init', array( __CLASS__, 'boot' ), 20 );
-	}
-
-	/**
-	 * Perform the actual registration on init (translations are ready).
-	 *
-	 * @return void
-	 */
-	public static function boot(): void {
+		// Create a settings page
 		Moo::page( 'wpmoo_starter_settings', __( 'Starter Settings', 'wpmoo-starter' ) )
-			->menuTitle( __( 'WPMoo Starter', 'wpmoo-starter' ) )
-			->menuSlug( 'wpmoo-starter-settings' )
-			->capability( 'manage_options' );
+			->capability( 'manage_options' )
+			->description( __( 'Configure WPMoo Starter plugin settings', 'wpmoo-starter' ) )
+			->menu_slug( 'wpmoo-starter-settings' )
+			->menu_position( 20 )
+			->menu_icon( 'dashicons-admin-generic' );
 
-		Text::register();
-		Textarea::register();
-		Color::register();
-		Accordion::register();
+		// Create tabs for the settings page
+		Moo::tabs( 'wpmoo_starter_main_tabs' )
+			->parent( 'wpmoo_starter_settings' )  // Link to the settings page
+			->items(
+				[
+					[
+						'id' => 'general',
+						'title' => __( 'General Settings', 'wpmoo-starter' ),
+						'content' => [
+							Field::input( 'site_title' )
+								->label( __( 'Site Title', 'wpmoo-starter' ) )
+								->placeholder( __( 'Enter your site title', 'wpmoo-starter' ) ),
+							Field::textarea( 'site_description' )
+								->label( __( 'Site Description', 'wpmoo-starter' ) )
+								->placeholder( __( 'Enter site description', 'wpmoo-starter' ) ),
+							Field::toggle( 'enable_cache' )
+								->label( __( 'Enable Caching', 'wpmoo-starter' ) ),
+						],
+					],
+					[
+						'id' => 'advanced',
+						'title' => __( 'Advanced Settings', 'wpmoo-starter' ),
+						'content' => [
+							Field::input( 'cache_duration' )
+								->label( __( 'Cache Duration (seconds)', 'wpmoo-starter' ) )
+								->placeholder( __( 'Enter cache duration', 'wpmoo-starter' ) ),
+							Field::toggle( 'enable_debug' )
+								->label( __( 'Enable Debug Mode', 'wpmoo-starter' ) ),
+						],
+					],
+				]
+			);
 	}
 }
