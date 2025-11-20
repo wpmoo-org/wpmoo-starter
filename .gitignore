@@ -1,5 +1,6 @@
 # Ignore vendor directory & generated CLI
 vendor/
+node_modules/
 moo
 
 # Ignore generated language templates during development
@@ -29,8 +30,11 @@ node_modules/
 **/.sass-cache
 npm-debug.log
 
-# Ignore compiled CSS assets
-assets/css/
+# WPMoo generated assets
+src/assets/**/*.css
+src/assets/**/*.map
+src/assets/**/*.js
+
 # PHPUnit cache
 .phpunit.result.cache
 
