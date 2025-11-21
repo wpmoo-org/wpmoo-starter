@@ -37,7 +37,7 @@ function compileSass(options = {}) {
         sourceMapIncludeSources: Boolean(file.sourceMap),
         // Allow importing framework tokens without relative paths
         loadPaths: [
-          "vendor/wpmoo/wpmoo/assets/scss",
+          "vendor/wpmoo/wpmoo/resources/scss",
           ...(options.loadPaths || []),
         ],
         quietDeps: options.quietDeps !== false,
