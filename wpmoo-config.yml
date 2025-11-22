@@ -1,0 +1,4 @@
+project: 
+  name: 'WPMoo Starter'
+  namespace: 'WPMooStarter'
+  text_domain: 'wpmoo-starter'
