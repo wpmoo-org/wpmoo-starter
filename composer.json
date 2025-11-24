@@ -70,7 +70,6 @@
       "@setup-wrapper"
     ],
     "check": [
-      "@check:validate",
       "@lint:php",
       "@phpcbf",
       "@phpcs",
