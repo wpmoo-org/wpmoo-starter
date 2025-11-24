@@ -10,9 +10,9 @@ const sourcemaps = require("gulp-sourcemaps");
 // framework tokens (variables/mixins) from vendor/wpmoo/wpmoo/assets/scss.
 const paths = {
   styles: {
-    entry: "assets/scss/plugin.scss",
-    src: "assets/scss/**/*.scss",
-    dest: "assets/css",
+    entry: "resources/scss/plugin.scss",
+    src: "resources/scss/**/*.scss",
+    dest: "src/assets/css",
   },
 };
 
