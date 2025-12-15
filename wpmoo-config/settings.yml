@@ -1,7 +1,7 @@
 project:
-  name: "WPMoo"
-  namespace: "WPMoo"
-  text_domain: "wpmoo"
+  name: "WPMoo Starter"
+  namespace: "WPMooStarter"
+  text_domain: "wpmoo-starter"
 
 localization:
   team: "WPMoo Team <hello@wpmoo.org>"

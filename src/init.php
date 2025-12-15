@@ -1,11 +1,11 @@
 <?php
 /**
- * Initializes the WPMoo standalone plugin.
+ * Initializes the WPMoo Starter plugin.
  *
  * This file handles loader registration and hooks into the core
- * to load its own features. It acts as a "conductor" in the global scope.
+ * to load the starter's own features. It acts as a "conductor" in the global scope.
  *
- * @package WPMoo
+ * @package WPMooStarter
  */
 
 // 1. Load the shared, immutable loader.
@@ -23,16 +23,18 @@ WPMoo_Loader::register( dirname(__DIR__) . '/vendor/wpmoo/wpmoo/framework/WordPr
 // 3. Load the Local Facade for this plugin.
 require_once __DIR__ . '/Moo.php';
 
+
+
 // 4. Hook into the core loaded action to initialize samples.
 add_action('wpmoo_loaded', function() {
     // 4.1. Register this plugin with the FrameworkManager for component tracking.
     // This ensures that its components (pages, fields) can be associated with it.
     \WPMoo\Core::instance()->get_container()->resolve(\WPMoo\WordPress\Managers\FrameworkManager::class)->register_plugin(
         __FILE__, // Plugin's main file path
-        \WPMoo\Moo::detect_app_id(),  // Dynamically detected plugin slug
-        '0.2.0'   // Plugin version
+        \WPMooStarter\Moo::detect_app_id(),  // Dynamically detected plugin slug
+        '0.1.0'   // Plugin version for starter
     );
 
-    // Load sample pages and fields using the WPMoo Local Facade.
+    // Load sample pages and fields using the WPMoo Starter Local Facade.
     require_once __DIR__ . '/samples/settings.php';
 });

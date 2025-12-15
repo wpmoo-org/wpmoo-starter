@@ -1,5 +1,5 @@
 {
-    "name": "wpmoo",
+    "name": "wpmoo-starter",
     "version": "0.1.1",
     "private": true,
     "description": "Build tooling for WPMoo admin assets."

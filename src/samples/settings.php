@@ -1,63 +1,58 @@
 <?php
 /**
- * Sample Settings Page using WPMoo Framework.
+ * Sample Settings Page for WPMooStarter using WPMoo Framework.
  *
  * This demonstrates the usage of the new WPMoo architecture for creating
- * a settings page with tabs and fields, following internationalization best practices.
+ * a settings page with tabs and fields with the starter plugin.
  *
- * @package WPMoo
+ * @package WPMooStarter
  * @since 0.1.0
  */
 
-use WPMoo\Moo;
-use WPMoo\Field\Field;
+use WPMooStarter\WPMoo\Moo;
+use WPMooStarter\WPMoo\Field\Field;
 
-// Wrap the code in an init action to ensure it runs at the right time.
-// add_action(
-// 	'init',
-// 	function () {
-		// Since this file is loaded via the 'wpmoo' plugin's Local Facade (WPMoo\Moo),
-		// we can make static calls directly. The APP_ID 'wpmoo' is handled by the facade.
-		
-		// Create a settings page.
-		Moo::page( 'wpmoo_starter_settings', __( 'Starter Settings', 'wpmoo-samples' ) )
-		->capability( 'manage_options' )
-		->description( __( 'Configure WPMoo Framework settings', 'wpmoo-samples' ) )
-		->menu_slug( 'wpmoo-starter-settings' )
-		->menu_position( 20 )
-		->menu_icon( 'dashicons-admin-generic' );
-		
-		// Create tabs for the settings page.
-		Moo::tabs( 'wpmoo_starter_main_tabs' )
-			->parent( 'wpmoo_starter_settings' )  // Link to the settings page.
-			->items(
-				array(
-					array(
-						'id' => 'general',
-						'title' => __( 'General Settings', 'wpmoo-samples' ),
-						'content' => array(
-							Field::input( 'site_title' )
-								->label( __( 'Site Title', 'wpmoo-samples' ) )
-								->placeholder( __( 'Enter your site title', 'wpmoo-samples' ) ),
-							Field::textarea( 'site_description' )
-								->label( __( 'Site Description', 'wpmoo-samples' ) )
-								->placeholder( __( 'Enter site description', 'wpmoo-samples' ) ),
-							Field::toggle( 'enable_cache' )
-								->label( __( 'Enable Caching', 'wpmoo-samples' ) ),
-						),
-					),
-					array(
-						'id' => 'advanced',
-						'title' => __( 'Advanced Settings', 'wpmoo-samples' ),
-						'content' => array(
-							Field::input( 'cache_duration' )
-								->label( __( 'Cache Duration (seconds)', 'wpmoo-samples' ) )
-								->placeholder( __( 'Enter cache duration', 'wpmoo-samples' ) ),
-							Field::toggle( 'enable_debug' )
-								->label( __( 'Enable Debug Mode', 'wpmoo-samples' ) ),
-						),
-					),
-				)
-			);
-// 	}
-// );
+// Register the settings page and tabs to be created after translations are available
+add_action('init', function() {
+    // Create a settings page using the starter plugin's facade.
+    Moo::page( 'wpmoo_starter_settings', __( 'Starter Settings', 'wpmoo-starter' ) )
+        ->capability( 'manage_options' )
+        ->description( __( 'Configure WPMoo Starter plugin settings', 'wpmoo-starter' ) )
+        ->menu_slug( 'wpmoo-starter-settings' )
+        ->menu_position( 20 )
+        ->menu_icon( 'dashicons-admin-generic' );
+
+    // Create tabs for the settings page using the starter plugin's facade.
+    Moo::tabs( 'wpmoo_starter_main_tabs' )
+        ->parent( 'wpmoo_starter_settings' )  // Link to the starter settings page
+        ->items(
+            array(
+                array(
+                    'id' => 'general',
+                    'title' => __( 'General Settings', 'wpmoo-starter' ),
+                    'content' => array(
+                        Field::input( 'site_title' )
+                            ->label( __( 'Site Title', 'wpmoo-starter' ) )
+                            ->placeholder( __( 'Enter your site title', 'wpmoo-starter' ) ),
+                        Field::textarea( 'site_description' )
+                            ->label( __( 'Site Description', 'wpmoo-starter' ) )
+                            ->placeholder( __( 'Enter site description', 'wpmoo-starter' ) ),
+                        Field::toggle( 'enable_cache' )
+                            ->label( __( 'Enable Caching', 'wpmoo-starter' ) ),
+                    ),
+                ),
+                array(
+                    'id' => 'advanced',
+                    'title' => __( 'Advanced Settings', 'wpmoo-starter' ),
+                    'content' => array(
+                        Field::input( 'cache_duration' )
+                            ->label( __( 'Cache Duration (seconds)', 'wpmoo-starter' ) )
+                            ->placeholder( __( 'Enter cache duration', 'wpmoo-starter' ) ),
+                        Field::toggle( 'enable_debug' )
+                            ->label( __( 'Enable Debug Mode', 'wpmoo-starter' ) ),
+                    ),
+                ),
+            )
+        );
+}, 10); // Run after the textdomain is loaded (which happens at priority 5 by default)
+

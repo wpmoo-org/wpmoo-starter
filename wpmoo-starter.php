@@ -2,15 +2,15 @@
 /**
  * Plugin Name: WPMoo Starter
  * Plugin URI: https://wpmoo.org
- * Description: A Simple and Lightweight WordPress Option Framework for Themes and Plugins.
- * Author: WPMoo
- * Author URI: https://wpmoo.org
- * Version: 0.2.0
- * Text Domain: wpmoo
+ * Description: Starter plugin showcasing WPMoo Framework capabilities.
+ * Version: 0.1.0
+ * Author: You
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: wpmoo-starter
  * Domain Path: /languages
- * License: GPL-2.0-or-later
  *
- * @package WPMoo
+ * @package WPMooStarter
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Begins the framework loading process.
+ * Begins the plugin loading process for the WPMoo Starter.
  *
- * This file is the primary entry point for the standalone WPMoo plugin.
- * It loads the plugin's core initializer which handles everything else.
+ * This file is the primary entry point for the starter plugin that demonstrates
+ * how to use the WPMoo framework to build WordPress components.
  */
 require_once __DIR__ . '/src/init.php';
