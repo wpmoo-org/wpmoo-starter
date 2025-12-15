@@ -14,16 +14,16 @@ use WPMooStarter\Moo;
 // Register the settings page and components to be created after translations are available
 add_action('init', function() {
     // Create a settings page using the starter plugin's facade.
-    Moo::page( 'wpmoo_starter_settings', __( 'Starter Settings', 'wpmoo-starter' ) )
+    Moo::page( 'settings', __( 'Starter Settings', 'wpmoo-starter' ) )
         ->capability( 'manage_options' )
         ->description( __( 'Configure WPMoo Starter plugin settings', 'wpmoo-starter' ) )
-        ->menu_slug( 'wpmoo-starter-settings' )
-        ->menu_position( 20 )
+        ->menu_slug( 'settings' )
+        ->menu_position( 21 )
         ->menu_icon( 'dashicons-admin-generic' );
 
     // Create tabs container for the settings page using the starter plugin's facade.
     Moo::container( 'tabs', 'wpmoo_starter_main_tabs' )
-        ->parent( 'wpmoo_starter_settings' );  // Link to the starter settings page
+        ->parent( 'settings' );  // Link to the starter settings page
 
     // Create individual tabs
     Moo::tab( 'starter_general', __( 'General Settings', 'wpmoo-starter' ) )
@@ -51,9 +51,9 @@ add_action('init', function() {
 
     // Also demonstrate accordion container
     Moo::container( 'accordion', 'wpmoo_starter_accordion' )
-        ->parent( 'wpmoo_starter_settings' );  // Link to the settings page.
+        ->parent( 'settings' );  // Link to the settings page.
 
-    Moo::accordion( 'starter_acc_general', __( 'General Information', 'wpmoo-starter' ) )
+    Moo::accordion( 'starter_acc_general', __( 'Accordion Example', 'wpmoo-starter' ) )
         ->parent( 'wpmoo_starter_accordion' )  // Link to the accordion container
         ->fields( array(
             Moo::input( 'starter_info_field' )
