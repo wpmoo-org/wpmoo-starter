@@ -1,7 +1,9 @@
 {
   "name": "wpmoo/wpmoo-starter",
-  "description": "Starter plugin demonstrating WPMoo Framework usage.",
+  "description": "WPMoo \u2014 WordPress Micro Object-Oriented Framework (PHP 7.4+)",
   "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "homepage": "https://wpmoo.org",
   "authors": [
     {
@@ -13,67 +15,56 @@
   "keywords": [
     "wordpress",
     "wp-cli",
-    "plugin",
-    "starter",
+    "framework",
+    "micro-framework",
     "php",
     "php7.4",
     "php8.0",
     "php8.1",
     "php8.2",
     "php8.3",
+    "php8.4",
+    "php8.5",
     "oop",
     "object-oriented"
   ],
-  "type": "wordpress-plugin",
-  "require": {
-    "php": ">=7.4",
-    "wpmoo/wpmoo": "dev-dev"
-  },
-  "autoload": {
-    "psr-4": {
-      "WPMooStarter\\": "src/"
-    }
-  },
-  "require-dev": {
-    "wpmoo/wpmoo-coding-standards": "dev-dev",
-    "wpmoo/wpmoo-cli": "dev-dev",
-    "phpstan/phpstan": "^1.11",
-    "szepeviktor/phpstan-wordpress": "^1.3",
-    "phpunit/phpunit": "*"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    },
-    "preferred-install": {
-      "source": "source"
-    }
+  "support": {
+    "issues": "https://github.com/wpmoo/wpmoo/issues",
+    "source": "https://github.com/wpmoo/wpmoo/"
   },
   "extra": {
     "branch-alias": {
       "dev-main": "0.1.x-dev"
     }
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
+  "type": "wordpress-framework",
+  "require": {
+    "php": ">=7.4",
+    "wpmoo/wpmoo": "dev-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPMoo\\": "vendor/wpmoo/wpmoo/framework/",
+      "WPMoo\\Samples\\": "src/samples/"
+    }
+  },
+  "require-dev": {
+    "wpmoo/wpmoo-cli": "dev-dev",
+    "scssphp/scssphp": "^1.12",
+    "szepeviktor/phpstan-wordpress": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
   "scripts": {
-    "lint:php": "find . -path './vendor' -prune -o -name '*.php' -print0 | xargs -0 -n1 php -l",
-    "phpcs": "vendor/bin/phpcs -n --standard=phpcs.xml",
-    "phpcbf": "vendor/bin/phpcbf",
-    "phpstan": "vendor/bin/phpstan analyse --no-progress --memory-limit=512M",
-    "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit .githooks/pre-push",
     "setup-wrapper": "php vendor/wpmoo/wpmoo-cli/scripts/generate-moo-wrapper.php",
     "post-install-cmd": [
       "@setup-wrapper"
     ],
     "post-update-cmd": [
       "@setup-wrapper"
-    ],
-    "check": [
-      "@lint:php",
-      "@phpcbf",
-      "@phpcs",
-      "@phpstan"
     ]
   }
 }

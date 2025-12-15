@@ -1,36 +1,24 @@
-=== WPMoo Starter ===
+=== WPMoo Framework ===
 Contributors: wpmoo
-Tags: starter, framework, settings, custom-post-type
-Requires at least: 6.2
+Tags: framework, oop, options, settings, metabox
+Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPMoo Starter demonstrates how to build a plugin using the WPMoo micro OOP framework.
+A Simple and Lightweight Micro Object-Oriented Framework for Themes and Plugins.
 
 == Description ==
 
-This plugin is a sample implementation of the WPMoo framework, showcasing:
-
-- Settings pages and fields
-- Custom post types and taxonomies
-- Metabox panels
-- Basic database helpers
-
-It is intended for development and learning purposes.
+WPMoo is a lightweight and modern object-oriented framework designed to speed up the development of high-quality WordPress plugins and themes. It provides a clean, fluent API for creating admin pages, metaboxes, and custom fields without the complexity of larger frameworks. Its goal is to provide a solid, testable foundation with a focus on modern PHP and developer experience.
 
 == Installation ==
 
-1. Upload the plugin folder to `/wp-content/plugins/`.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
+For end-users, WPMoo can be installed as a standalone plugin to provide its core functionality to other plugins that may require it.
 
-== Frequently Asked Questions ==
-
-= Is this for production? =
-
-This is a starter/example plugin. Use as a reference to build your own plugins.
+For developers, it is recommended to include WPMoo as a Composer dependency in your project.
 
 == Changelog ==
 

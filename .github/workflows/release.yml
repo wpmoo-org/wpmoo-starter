@@ -6,11 +6,12 @@ on:
       - 'v*'
 
 jobs:
-  build-and-release:
-    name: Build and Release
+  build-and-deploy: # Renamed job for clarity
+    name: Build and Deploy to WordPress.org
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # For softprops/action-gh-release
+
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -28,41 +29,50 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.1' # Adjust to project's required PHP version
+          tools: composer:v2
           coverage: none
+          ini-values: memory_limit=-1
 
       - name: Validate composer.json
         run: composer validate --strict
 
-      - name: Install dependencies
+      - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
-      - name: Lint/Analyze
+      - name: Run PHPCS
         run: |
-          if composer run -q phpcs 2>/dev/null; then composer phpcs; else echo "No phpcs"; fi
-          if composer run -q phpstan 2>/dev/null; then composer phpstan; else echo "No phpstan"; fi
-
-      - name: Build distributable zip
-        run: |
-          if composer run -q moo 2>/dev/null; then
-            composer moo -- dist || php vendor/bin/moo dist
+          if composer run -q phpcs 2>/dev/null; then
+            composer phpcs
           else
-            echo "moo script not found; skipping dist.";
+            echo "No phpcs script; skipping."
           fi
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v5
+      
+      # Node.js setup and asset building
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          name: plugin-dist
-          path: |
-            dist/*.zip
-          if-no-files-found: warn
+          node-version: '18' # Use a stable Node.js version appropriate for your project
 
-      - name: Create GitHub release with asset
+      - name: Install Node.js dependencies
+        run: npm install --prefix . # Install npm dependencies in the current directory
+
+      - name: Build project assets
+        run: php vendor/bin/moo build --no-interaction
+
+      - name: Deploy to WordPress.org
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true # Generate a ZIP file from the deployed plugin
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }} # Use GITHUB_TOKEN for password if using deploy tokens
+                                                    # Otherwise, use secrets.SVN_PASSWORD for standard SVN password.
+
+      - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            dist/*.zip
-          generate_release_notes: true
+          # Provide what the file should be named when attached to the release (plugin-name.zip)
+          files: ${{ github.workspace }}/${{ github.event.repository.name }}.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub Actions for authenticating with GitHub

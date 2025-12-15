@@ -1,42 +1,37 @@
-# Ignore vendor directory & generated CLI
+# Ignore dependencies and build artifacts
 vendor/
 node_modules/
 moo
-
-# Ignore generated language templates during development
-languages/
-
-
-# Ignore lock files
-yarn.lock
-package-lock.json
-.pnpm-lock.yaml
-composer.lock
-
-# Ignore editor directories
-.idea/
-.vscode/
-*.log
-*.sql
-*.sqlite
+bin/
 
 # Ignore OS generated files
 .DS_Store
 Thumbs.db
-ehthumbs.db
 
-# Ignore node dependency directories (used by grunt)
-node_modules/
-**/.sass-cache
-npm-debug.log
+# Ignore IDE specific files
+.vscode/
 
-# WPMoo generated assets
-src/assets/**/*.css
-src/assets/**/*.map
-src/assets/**/*.js
+# Ignore log files
+*.log
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+composer.lock
+
+# Ignore temporary files
+.wpmoo-temp/
+*.tmp
 
 # PHPUnit cache
 .phpunit.result.cache
 
-# Local env (do not commit)
-.env.local
+# WPMoo generated assets
+assets/**/*.css
+assets/**/*.map
+assets/**/*.js

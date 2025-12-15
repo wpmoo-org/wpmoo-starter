@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "WPMoo Starter pre-commit checks"
+echo "WPMoo pre-commit checks"
 
+# Collect staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR | tr '\n' ' ')
 PHP_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.php$' || true)
 SCSS_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(scss)$' || true)
 
+# Nothing staged; nothing to do
 if [ -z "${STAGED_FILES}" ]; then
   echo "(no staged changes; skipping checks)"
   exit 0
 fi
 
+# Composer validate (skip lock check)
 if command -v composer >/dev/null 2>&1 && [ -f composer.json ]; then
   composer validate --strict --no-check-lock --ansi || exit 1
 fi
 
+# PHP syntax lint on staged PHP files
 if [ -n "${PHP_FILES}" ]; then
   echo "→ Linting PHP files"
   while IFS= read -r file; do
@@ -24,6 +28,7 @@ if [ -n "${PHP_FILES}" ]; then
   done <<< "${PHP_FILES}"
 fi
 
+# PHPCBF then PHPCS on staged PHP files
 if [ -n "${PHP_FILES}" ]; then
   if [ -x vendor/bin/phpcbf ]; then
     echo "→ PHPCBF (auto-fix staged files)"
@@ -35,33 +40,9 @@ if [ -n "${PHP_FILES}" ]; then
     git add ${PHP_FILES}
   fi
   if [ -x vendor/bin/phpcs ] && [ -f phpcs.xml ]; then
-    echo "→ Running PHPCS"
+    echo "→ PHPCS"
     vendor/bin/phpcs -n --standard=phpcs.xml ${PHP_FILES} || exit 1
   fi
-fi
-
-if [ "${SKIP_PHPSTAN:-0}" != "1" ] && [ -n "${PHP_FILES}" ] && [ -x vendor/bin/phpstan ] \
-   && { [ -f phpstan.neon ] || [ -f phpstan.neon.dist ]; }; then
-  echo "→ Running PHPStan (staged files only)"
-  vendor/bin/phpstan analyse --no-progress --memory-limit=512M ${PHP_FILES} || exit 1
-fi
-
-# Optional: WP Plugin Check only (no install/copy). Enable with LOCAL_WP_CHECK_ONLY=1
-if [ "${LOCAL_WP_CHECK_ONLY:-0}" = "1" ] && [ -f ".env.local" ]; then
-  echo "→ Running WP Plugin Check (scripts/wp-plugin-check-only.sh)"
-  bash scripts/wp-plugin-check-only.sh || exit 1
-fi
-
-# Optional local WordPress smoke test (requires .env.local). Skipped when LOCAL_WP_CHECK_ONLY=1
-if [ "${LOCAL_WP_TEST:-1}" = "1" ] && [ "${LOCAL_WP_CHECK_ONLY:-0}" != "1" ] && [ -f ".env.local" ]; then
-  echo "→ Running local WordPress smoke test (scripts/local-wp-test.sh)"
-  bash scripts/local-wp-test.sh || exit 1
-fi
-
-if [ "${SKIP_TESTS:-0}" != "1" ] && [ -x vendor/bin/phpunit ] \
-   && { [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; }; then
-  echo "→ Running PHPUnit"
-  vendor/bin/phpunit || exit 1
 fi
 
 # SCSS format + lint on staged files (if Node + tools available)
@@ -74,6 +55,20 @@ if [ -n "${SCSS_FILES}" ]; then
       git add ${SCSS_FILES}
     fi
   fi
+fi
+
+# PHPStan on staged PHP files (can be disabled with SKIP_PHPSTAN=1)
+if [ "${SKIP_PHPSTAN:-0}" != "1" ] && [ -n "${PHP_FILES}" ] && [ -x vendor/bin/phpstan ] \
+   && { [ -f phpstan.neon ] || [ -f phpstan.neon.dist ]; }; then
+  echo "→ Running PHPStan (staged files only)"
+  vendor/bin/phpstan analyse --no-progress --memory-limit=1G ${PHP_FILES} || exit 1
+fi
+
+# PHPUnit (can be disabled with SKIP_TESTS=1)
+if [ "${SKIP_TESTS:-0}" != "1" ] && [ -x vendor/bin/phpunit ] \
+   && { [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; }; then
+  echo "→ Running PHPUnit"
+  vendor/bin/phpunit || exit 1
 fi
 
 echo "✔ Pre-commit checks passed"

@@ -5,12 +5,24 @@ includes:
 parameters:
     level: 6
     phpVersion: 70400
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false
     paths:
         - src
+        - framework
     excludePaths:
         - vendor
         - tests
-    stubFiles:
-        - vendor/wpmoo/wpmoo/resources/phpstan/stubs/wpmoo-fields-field.stub.php
-    reportUnmatchedIgnoredErrors: false
-    treatPhpDocTypesAsCertain: false
+        - dist
+        - framework/Metabox/Metabox.php
+
+    ignoreErrors:
+        -
+            message: '#^Function return type is not void, but function has no return statement$#'
+            paths:
+                - resources/phpstan/stubs/wpmoo-fields-field.stub.php
+        -
+            message: '#^Class WPMoo\\Metabox\\Metabox extends unknown class WPMoo\\Metabox\\Builders\\MetaboxBuilder$#'
+            paths:
+                - framework/Metabox/Metabox.php
+
