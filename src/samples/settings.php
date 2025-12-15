@@ -9,8 +9,8 @@
  * @since 0.1.0
  */
 
-use WPMooStarter\WPMoo\Moo;
-use WPMooStarter\WPMoo\Field\Field;
+use WPMooStarter\Moo;
+use WPMoo\Field\Field;
 
 // Register the settings page and tabs to be created after translations are available
 add_action('init', function() {
