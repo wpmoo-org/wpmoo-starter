@@ -17,7 +17,7 @@ if ( ! function_exists( 'wpmoo_loader' ) ) {
 wpmoo_loader( 'load_autoloader', dirname( __DIR__ ) . '/vendor/wpmoo/wpmoo/framework' );
 
 // 2. Register this version of the framework with the loader.
-wpmoo_loader( 'register', dirname( __DIR__ ) . '/vendor/wpmoo/wpmoo/framework/WordPress/boot.php', '0.2.0' );
+wpmoo_loader( 'register', dirname( __DIR__ ) . '/vendor/wpmoo/wpmoo/framework/WordPress/boot.php', '0.1.0' );
 
 // 3. Load the Local Facade for this plugin.
 require_once __DIR__ . '/Moo.php';
